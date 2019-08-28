@@ -1,0 +1,190 @@
+.aright{
+    margin-left: 920px;
+   
+}
+
+.aright ul li a {
+    color: crimson;
+}
+.navbar-brand {
+    color: aqua;  
+    margin-left: 20px;
+    
+}
+ div #back-img{
+    width: 1360px;
+    height: 600px;
+    background: url('images/travel-palnner.jpg');
+    background-size: cover;
+     background-repeat: no-repeat;
+
+}
+
+.head span  {
+    font-size: 148px;
+}
+
+.title-text {
+    display: block;
+    float: left;
+    
+}
+
+.search-box{
+    background-color: burlywood;
+    width: 650px;
+    height: 450px;
+    float: right;
+    margin-right: 22px; 
+    margin-top: 35px;
+    border-radius: 10px;
+    border: 2px dotted black;	
+}
+
+.effect7
+{
+  	position:relative;
+    -webkit-box-shadow:0 1px 6px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+       -moz-box-shadow:0 1px 6px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+            box-shadow:0 1px 6px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+}
+.effect7:before, .effect7:after
+{
+	content:"";
+    position:absolute;
+    z-index:-1;
+    -webkit-box-shadow:0 0 20px rgba(0,0,0,0.8);
+    -moz-box-shadow:0 0 20px rgba(0,0,0,0.8);
+    box-shadow:0 0 20px rgba(0,0,0,0.8);
+    top:0;
+    bottom:0;
+    left:10px;
+    right:10px;
+    -moz-border-radius:100px / 10px;
+    border-radius:100px / 10px;
+}
+.effect7:after
+{
+	right:10px;
+    left:auto;
+    -webkit-transform:skew(14deg) rotate(4deg);
+       -moz-transform:skew(8deg) rotate(3deg);
+        -ms-transform:skew(8deg) rotate(3deg);
+         -o-transform:skew(8deg) rotate(3deg);
+            transform:skew(8deg) rotate(3deg);
+}
+
+.extra {
+  height: 700px;
+}
+
+footer {
+    background-color: black;
+    color: aliceblue;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    text-align: center;
+    font-size: 20px;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.inside { 
+        margin-top: 70px;
+        padding-left: 35px;
+         box-shadow: none;
+          border-radius: 0;
+        border: none;
+}
+.top-fix {
+   position: relative;
+    top: -40px;
+    
+}
+html,body{ 
+    overflow-x:hidden;
+}
+
+.date{
+    padding-left: 50px;
+    
+}
+#position {
+    font-size: 43px;
+    position: relative;
+    top: 85px;
+}
+
+
+.button-2 {
+  border: 2.5px solid aqua;
+  background-color: #000000;
+  border-radius: 10px;
+  color: aqua;
+  transition: .3s;
+  position: relative;
+    top: 15px
+}
+.button-2:hover {
+  box-shadow: 8px 8px aqua;
+  transition: .3s;
+}
+.center {
+    text-align: center;
+}
+.button {
+  width: 450px;
+    height: 50px; 
+  padding-top: 5px;
+  padding-bottom: 10px;
+  text-align: center;
+  color: ;
+
+  font-weight: 600;
+  font-size: 20px;
+  margin-left: 30px;
+  margin-bottom: 30px;
+  cursor: pointer;
+  display: inline-block;
+text-decoration: none;
+}
+
+.search-box h3{
+    text-align: center;
+    align-self: center;
+    position: relative;
+    top: 25px;
+}
+.button-log {
+    position: relative;
+    top: 420px;
+    left: 0;
+    margin-left: 50px;
+}
+
+.button-3 {
+  background-color: cornflowerblue;
+  border-radius: 15px;
+  color: #fff;
+}
+.button-properties{
+    width: 170px;
+  padding-top: 10px;
+
+  padding-bottom: 10px;
+  text-align: center;
+  color: #000;
+  font-weight: 500;
+  margin-left: 140px;
+  margin-bottom: 30px;
+  cursor: pointer;
+  display: inline-block;
+}
+.title-text h1{
+    position: relative;
+    top: 278px;
+    padding-left: 50px;
+    left: 60px;
+    font-size: 38px;
+    transform: rotate(-1deg);
+}
