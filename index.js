@@ -42,7 +42,9 @@ app.use(function(req, res, next) {
 
 //landing page
 app.get('/', function(req, res) {
-    res.send('<h1>Welcome</h1>'); //langing page will be updated, when it is created
+    res.render('home.hbs', ({
+        title: "Travel Planner"
+    }))
 });
 
 app.get('/profile', (req, res) => {
