@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Travel Planner</title>
+        <link rel="stylesheet" href="Public/styles.css" />
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Dancing+Script|Handlee|Pacifico|Satisfy&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div>
+      <div>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand " href="#" style="color: aqua">Travel Planner</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse aright" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="#" style="color: beige">Search Flight </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" style="color: beige">Login</a>
+          </li>
+           <li class="nav-item dropdown">
+             <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: crimson"> More </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" href="#">FAQ</a>
+              <a class="dropdown-item" href="#">Blogs</a>
+          </div>
+        </li>
+      </ul>
+     </div>
+        </nav>
+       </div>
+    <div id="back-img">
+        <div class="title-text">
+                 <h1 style="font-family: 'Satisfy'; display: block">Welcome to </h1>  
+               <p><span style="font-size: 90px; padding-left: 40px; margin-top: 240px; display: block; font-family: 'Dancing Script', cursive; color: black; text-shadow: -4px 3px 0 #FF0000 ;" >Travel Planner </span></p>
+        </div>
+    <div class="search-box effect7">
+        <h3><kbd>Plan Your Journey</kbd></h3>
+<!--    first row  -->
+    <div class="row inside form-group">
+        <div class="col">
+            <input type="text" class="form-control" placeholder="From">
+        </div>
+        <div class="col" id="aright" style="margin-left: 0px; margin-right: 25px;">
+            <input type="text" class="form-control" placeholder="To">
+        </div> 
+        
+    </div>
+<!-- second row  -->
+      <div class="row date top-fix" >
+       <div class="col-md-5 inside  form-group">
+          <label for="">Start Date:</label>
+           <input  type="date"  class="form-control">
+       </div>
+       <p><span id="position">&#8652;</span></p>
+       <div class="col-md-5 inside form-group">
+           <label for="">End Date:</label>
+           <input type="date"  class="form-control">
+       </div>
+       </div>
+       <div class="center">
+          <div class="button-2 button">
+        <a href="#" style="text-decoration: none; color: aqua"> Search</a>   
+          </div>
+       </div>
+       
+    </div>
+    <div class="button-properties button-3">
+        <a href="#" style="text-decoration: none; color: wheat">Login </a>
+    </div>
+    </div>
+        
+<!--filter and search results here -->
+         <div class="results filter extra">
+             
+         </div>
+        
+     </div>
+    <div>
+    <footer>
+        <p>&copy; Travel Planner | 2019 All Rights Reserved</p>    
+    </footer>
+    </div>
+    
+<!--  Js and jquery Bootstrap links-->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+ 
+  
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script> 
+</body>
+</html>
