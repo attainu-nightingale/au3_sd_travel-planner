@@ -6,26 +6,32 @@ var mongoClient = require('mongodb').MongoClient;
 var app = express();
 var auth = require('./routes/auth.js');
 
-app.use(bodyParser.urlencoded({extended: false}));
-app.use(bodyParser,JSON());
+app.use(bodyParser.urlencoded({
+    extended: false
+}));
+app.use(bodyParser.json());
 app.use(express.static('public'));
 app.set('view engine', 'hbs');
 
 var url = "mongodb://localhost:27017";
 
-mongoClient.connect(url, {useNewUrlParser: true}, function(err, client) {
-  if(err)
-    throw err;
-  app.locals.db = client.db('school');     //will change db name, when it is created
+app.locals.db;
+
+mongoClient.connect(url, {
+    useNewUrlParser: true
+}, function(err, client) {
+    if (err)
+        throw err;
+    db = client.db('school'); //will change db name, when it is created
 });
 
 app.locals.ObjectId = require('mongodb').ObjectID;
 
 app.use(session({
-  secret: "Hakumanata!! Timon and Pumba. Mogambo khush hua!!!"
+    secret: "Hakumanata!! Timon and Pumba. Mogambo khush hua!!!"
 }));
 
-app.use(function (req, res, next) {
+app.use(function(req, res, next) {
     if (!req.session.views) {
         req.session.views = {};
     }
@@ -36,12 +42,16 @@ app.use(function (req, res, next) {
 
 //landing page
 app.get('/', function(req, res) {
-  res.send('<h1>Welcome</h1>');    //langing page will be updated, when it is created
+    res.send('<h1>Welcome</h1>'); //langing page will be updated, when it is created
 });
+
+app.get('/profile', (req, res) => {
+
+})
 
 //login authentication
 app.use('/authentication', auth);
 
 app.listen(3000, function() {
-  console.log("Listening on port 3000");
+    console.log("Listening on port 3000");
 });
