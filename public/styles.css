@@ -29,21 +29,21 @@ div #back-img {
 }
 
 .search-box {
-    background-color: burlywood;
-    width: 650px;
-    height: 450px;
+    background-color: rgb(255, 255, 255);
+    width: 450px;
+    height: 350px;
     float: right;
-    margin-right: 22px;
-    margin-top: 35px;
+    margin-right: 150px;
+    margin-top: 20%;
     border-radius: 10px;
-    border: 2px dotted black;
+    /* border: 1px solid rgb(131, 131, 131); */
 }
 
 .effect7 {
     position: relative;
     -webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
     -moz-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
-    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+    box-shadow: 0 5px 6px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
 }
 
 .effect7:before,
@@ -122,11 +122,11 @@ body {
     color: aqua;
     transition: .3s;
     position: relative;
-    top: 15px
+    top: -35px
 }
 
 .button-2:hover {
-    box-shadow: 8px 8px aqua;
+    background-color: rgb(18, 70, 65);
     transition: .3s;
 }
 
@@ -135,15 +135,15 @@ body {
 }
 
 .button {
-    width: 450px;
+    width: 250px;
     height: 50px;
     padding-top: 5px;
     padding-bottom: 10px;
     text-align: center;
-    color: goldenrod;
+    color: yellowgreen;
     font-weight: 600;
     font-size: 20px;
-    margin-left: 30px;
+    margin-left: 110px;
     margin-bottom: 30px;
     cursor: pointer;
     display: inline-block;
