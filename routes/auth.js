@@ -59,7 +59,7 @@ router.post('/login', function(req, res) {
                             _id: user._id
                         },
                         'secret', {
-                            expiresIn: '1h'
+                            expiresIn: '2h'
                         });
                     req.session.token = JWTToken;
                     return res.status(200).json({
@@ -67,12 +67,6 @@ router.post('/login', function(req, res) {
                         redirect: '/profile',
                         success: 'Login Success',
                     });
-                    // return res.write({
-                    //     token: JWTToken,
-                    //     success: 'Login Success'
-                    // })
-                    // res.writable('/profile')
-                    // res.end();
                 }
                 return res.status(401).json({
                     failed: 'Incorrect Password'
@@ -120,5 +114,12 @@ router.post('/resetpassword', (req, res) => {
         }
     })
 })
+router.get("/logout", (req, res) => {
+    req.session.destroy();
+    res.redirect("/");
+});
+
+
+
 
 module.exports = router;

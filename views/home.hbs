@@ -9,18 +9,14 @@
             </button>
             <div class="collapse navbar-collapse" id="probootstrap-navbar">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item pr-4"><a class="nav-link" href="/flight">Flight</a></li>
                     <li class="nav-item pr-4"><a class="nav-link" href="/hotel">Hotel</a></li>
                     <li class="nav-item pr-4"><a class="nav-link" href="/holiday">Holiday</a></li>
                     <li class="nav-item pr-4"><a class="nav-link" href="/faq">FAQ</a></li>
-                    <li class="nav-item pr-4"><a class="nav-link" href="/faq">FAQ</a></li>
                     <li class="nav-item pr-4">
-                        <button class="btn btn-outline-success my-2 my-sm-0" data-toggle="modal"
-                            data-target="#loginModal">Login</button>
+                        {{{loginBtn}}}
                     </li>
                     <li class="nav-item pr-4">
-                        <button class="btn btn-outline-success my-2 my-sm-0" data-toggle="modal"
-                            data-target="#signupModal">Sign Up</button>
+                        {{{signupBtn}}}
                     </li>
                 </ul>
             </div>
@@ -72,9 +68,7 @@
 
                 </div>
             </div>
-            <div class="button-properties button-3">
-                <a id="heroLoginButton" style="text-decoration: none; color: wheat">Login </a>
-            </div>
+            {{{profileBtn}}}
         </div>
     </div>
     <!--filter and search results here -->
@@ -107,7 +101,13 @@
                         <label for="loginPassword">Password</label>
                         <input type="password" class="form-control" id="loginPassword" placeholder="Password">
                     </div>
+
                     <div class="modal-footer">
+                        <div>
+                            <a href="/" data-toggle="modal" data-target="#resetPassModal" data-dismiss="modal">
+                                Forget Password?
+                            </a>
+                        </div>
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         <button type="button" id="loginToYourAccount" class="btn btn-primary">Login</button>
                     </div>
@@ -150,6 +150,11 @@
                         <input type="password" class="form-control" id="passMatch" placeholder="Password">
                     </div>
                     <div class="modal-footer">
+                        <div>
+                            <a href="/" data-toggle="modal" data-target="#loginModal" data-dismiss="modal">
+                                Already created account?
+                            </a>
+                        </div>
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         <button type="button" id="signUpButton" class="btn btn-primary">Sign Up</button>
                     </div>
@@ -161,6 +166,54 @@
 </div>
 
 {{!-- SignUp Modal End --}}
+
+
+{{!-- Reset Password Modal Start --}}
+
+<div class="modal fade" id="resetPassModal" tabindex="-1" role="dialog" aria-labelledby="resetPassModalTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="resetPassModalTitle">Reset Your Password</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="ml-3 mr-3">
+                    <div class="form-group">
+                        <label for="resetUsername">Email address</label>
+                        <input type="email" class="form-control" id="resetUsername" aria-describedby="emailHelp"
+                            placeholder="Enter email">
+                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
+                            else.</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="resetPassword">Password</label>
+                        <input type="password" class="form-control" id="resetPassword" placeholder="Password">
+                    </div>
+                    <div class="form-group">
+                        <label for="resetPassMatch">Confirm Password</label>
+                        <input type="password" class="form-control" id="resetPassMatch" placeholder="Password">
+                    </div>
+                    <div class="modal-footer">
+                        <div>
+                            <a href="/" data-toggle="modal" data-target="#signupModal" data-dismiss="modal">
+                                Create Account
+                            </a>
+                        </div>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" id="resetPassBtn" class="btn btn-primary">Reset password</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{{!-- Reset Password Modal Ends --}}
 
 <footer>
     <p>&copy; Travel Planner | 2019 All Rights Reserved</p>

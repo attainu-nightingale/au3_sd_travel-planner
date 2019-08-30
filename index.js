@@ -40,14 +40,38 @@ app.use(
 );
 
 app.get("/", function(req, res) {
+    var loginButton;
+    if (req.session.token) {
+        profileBtn = `<div class="button-properties button-3"><a href="/profile" id="heroprofileBtn" style="text-decoration: none; color: wheat">Profile</a></div>`
+        signupBtn = "",
+            loginButton = `<a href="/logout"><button class="btn btn-outline-success my-2 my-sm-0" data-toggle="modal"
+        data-target="#logOutBtn">Log Out</button></a>`
+    } else {
+        loginButton = `<button class="btn btn-outline-success my-2 my-sm-0" data-toggle="modal"
+        data-target="#loginModal">Login</button>`,
+            signupBtn = `<button class="btn btn-outline-success my-2 my-sm-0" data-toggle="modal"
+        data-target="#signupModal">Sign Up</button>`,
+            profileBtn = ""
+    }
     res.render("home.hbs", {
-        title: "Travel Planner"
+        title: "Travel Planner",
+        loginBtn: loginButton,
+        signupBtn: signupBtn,
+        profileBtn: profileBtn
     });
 });
 
+// logout the user
+
+app.get("/logout", (req, res) => {
+    req.session.destroy();
+    res.redirect("/");
+});
+
+
+
 //login authentication
 app.use("/authentication", auth);
-
 // protected Routes
 
 app.get("/profile", checkToken, (req, res) => {
