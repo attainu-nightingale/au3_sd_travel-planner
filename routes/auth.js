@@ -2,8 +2,8 @@ const express = require('express');
 const router = express.Router();
 const mongoClient = require('mongodb').mongoClient
 const bcrypt = require('bcrypt');
+var session = require('express-session');
 const jwt = require('jsonwebtoken');
-
 
 router.post('/signup', function(req, res) { //auth route
     db.collection('users').findOne({
@@ -59,10 +59,12 @@ router.post('/login', function(req, res) {
                             _id: user._id
                         },
                         'secret', {
-                            expiresIn: '1h'
+                            expiresIn: '2h'
                         });
+                    req.session.token = JWTToken;
                     return res.status(200).json({
                         token: JWTToken,
+                        redirect: '/profile',
                         success: 'Login Success',
                     });
                 }
@@ -112,37 +114,12 @@ router.post('/resetpassword', (req, res) => {
         }
     })
 })
-
-
-const checkToken = (req, res, next) => {
-    const header = req.headers['authorization'];
-
-    if (typeof header !== 'undefined') {
-        const bearer = header.split(' ');
-        const token = bearer[1];
-
-        req.token = token;
-        next();
-    } else {
-        //If header is undefined return Forbidden (403)
-        res.sendStatus(403)
-    }
-}
-
-router.get('/profile', checkToken, (req, res) => {
-    //verify the JWT token generated for the user
-    jwt.verify(req.token, 'secret', (err, authorizedData) => {
-        if (err) {
-            //If error send Forbidden (403)
-            res.sendStatus(403);
-        } else {
-            //If token is successfully verified, we can send the autorized data 
-            res.json({
-                message: 'Successful log in',
-                authorizedData
-            });
-        }
-    })
+router.get("/logout", (req, res) => {
+    req.session.destroy();
+    res.redirect("/");
 });
+
+
+
 
 module.exports = router;
