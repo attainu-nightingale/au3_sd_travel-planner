@@ -65,3 +65,36 @@ $('#resetPassBtn').on('click', () => {
         }
     })
 })
+
+
+
+$('#btnsubmit1').on("click",function(){
+
+    var data={
+        fname: $('#firstname').val(),
+        lname:$('#lastname').val(),
+        gender:$('input[name=gender]:checked', '#myForm').val(),
+        age:$('#age').val(),
+        email: $('#email').val(),
+        phone: $('#phone').val(),
+        city: $('#city').val(),
+        state:$('#state').val(),
+        address:$('#address').val()
+        
+    }
+    
+$.ajax({
+    url: '/myaccount/acc',
+    type: 'PUT',
+    datatype: 'JSON',
+    data:data,
+    success: function (data) {
+
+console.log(data);
+    }
+
+})
+
+})
+
+

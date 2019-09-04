@@ -83,6 +83,77 @@ app.get("/faq", function(req, res) {
     res.render("faq.hbs");
 });
 
+
+//Myaccount--works
+// app.get("/myaccount", checkToken, (req, res) => {
+//     res.render('myAcc.hbs', ({
+//         title: "Account Details",
+//         data: req.userData._id,
+//         script:'/script.js',
+
+
+//     }));
+// });
+
+
+
+
+
+app.get("/myaccount", checkToken, (req, res) => {
+    db.collection('users').find().toArray(function(error,result){
+        if(error)
+        throw error;
+    res.render('myAcc.hbs', ({
+        title: "Account Details",
+        data: result,
+        script:'/script.js',
+
+
+    }));
+});
+
+
+})
+
+hbs.registerHelper('checked', function(value, test) {
+    if (value == undefined) return '';
+    return value==test ? 'checked' : '';
+});
+
+
+
+
+
+
+
+app.put('/myaccount/acc',checkToken, (req, res) => {
+var proId=req.userData._id
+    var updProfile= req.body;
+    var objectId=require('mongodb').ObjectId
+    db.collection('users').update({"_id": new objectId(proId)},{$set: updProfile},function(error,result){
+        if(error)
+        throw error;
+        console.log(result);
+        // res.json(result);
+    
+
+})
+
+
+}) 
+
+
+
+
+
+
+
+
+
+
+
+
+
 app.listen(3000, function() {
     console.log("Listening on port 3000");
 });
