@@ -39,6 +39,9 @@ app.use(
     })
 );
 
+var searchResult = [];
+var airlineName = [];
+
 app.get("/", function(req, res) {
     var loginButton;
     if (req.session.token) {
@@ -57,7 +60,9 @@ app.get("/", function(req, res) {
         title: "Travel Planner",
         loginBtn: loginButton,
         signupBtn: signupBtn,
-        profileBtn: profileBtn
+        profileBtn: profileBtn,
+        data: airlineName,
+        script: '/search.js'
     });
 });
 
@@ -77,6 +82,22 @@ app.get("/profile", checkToken, (req, res) => {
         title: "User Profile",
         data: req.userData._id
     });
+});
+
+app.post('/search', function (req, res) {
+  // console.log(JSON.stringify(req.body));
+  searchResult.push(req.body);
+  var airlines = searchResult[0];
+  var newAirlines = airlines.Carriers;
+  // console.log(airlines);  
+  // console.log(newAirlines);
+  var newAirlines = airlines.Carriers;
+  newAirlines.forEach((element, index, array) => {
+    airlineName.push(element.Name);
+  });
+  console.log(airlineName);
+  // console.log(JSON.stringify(searchResult));
+  res.redirect('/');
 });
 
 app.get("/faq", function(req, res) {

@@ -1,57 +1,70 @@
 <div>
 
-    <div id="back-img">
-        <div class="row">
-            <div class="col-6">
-                <div class="title-text">
-                    <h1 style="font-family: 'Satisfy'; display: block">Welcome to </h1>
-                    <p><span
-                            style="font-size: 90px; padding-left: 40px; margin-top: 240px; display: block; font-family: 'Dancing Script', cursive; color: black; text-shadow: -4px 3px 0 #FF0000 ;">Travel
-                            Planner </span></p>
-                </div>
-            </div>
-            <div class="col-6">
-                <div class="search-box effect7">
-                    <h3><kbd>Plan Your Journey</kbd></h3>
-                    <div class="row">
-
-                        <!--    first row  -->
-                        <div class="row inside form-group">
-                            <div class="col">
-                                <input type="text" class="form-control" placeholder="From">
-                            </div>
-                            <div class="col" id="aright" style="margin-left: 0px; margin-right: 25px;">
-                                <input type="text" class="form-control" placeholder="To">
-                            </div>
-
-                        </div>
-                        <!-- second row  -->
-                        <div class="row date top-fix">
-                            <div class="col-md-5 inside  form-group">
-                                <label for="">Start Date:</label>
-                                <input type="date" class="form-control">
-                            </div>
-                            <p><span id="position">&#8652;</span></p>
-                            <div class="col-md-5 inside form-group">
-                                <label for="">End Date:</label>
-                                <input type="date" class="form-control">
-                            </div>
-                        </div>
-                        <div class="center">
-                            <div class="button-2 button center">
-                                <a href="#" style="text-decoration: none; color: aqua"> Search</a>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-            {{{profileBtn}}}
+  <div id="back-img">
+    <div class="row">
+      <div class="col-6">
+        <div class="title-text">
+          <h1 style="font-family: 'Satisfy'; display: block">Welcome to </h1>
+          <p><span
+              style="font-size: 90px; padding-left: 40px; margin-top: 240px; display: block; font-family: 'Dancing Script', cursive; color: black; text-shadow: -4px 3px 0 #FF0000 ;">Travel
+              Planner </span></p>
         </div>
+      </div>
+      <div class="col-6">
+        <div class="search-box effect7">
+          <h3><kbd>Plan Your Journey</kbd></h3>
+          <div class="row">
+
+            <!--    first row  -->
+            <form action="/search" method="POST" autocomplete="on">
+              <div class="row inside form-group">
+                <div class="col">
+                  <input type="text" class="form-control ui-widget" placeholder="From" name="originPlace"
+                    id="originPlace" class="airport">
+                </div>
+                <div class="col" id="aright" style="margin-left: 0px; margin-right: 25px;">
+                  <input type="text" class="form-control" placeholder="To" name="destinationPlace" id="destinationPlace"
+                    class="airport">
+                </div>
+              </div>
+              <!-- second row  -->
+              <div class="row date top-fix">
+                <div class="col-md-5 inside  form-group">
+                  <label for="">Start Date:</label>
+                  <input type="date" class="form-control" name="startDate" id="startDate">
+                </div>
+                <p><span id="position">&#8652;</span></p>
+                <div class="col-md-5 inside form-group">
+                  <label for="">End Date:</label>
+                  <input type="date" class="form-control" name="returnDate" id="returnDate">
+                </div>
+              </div>
+            </form>
+            <div class="center">
+              <div class="button-2 button center">
+                <a href="#" style="text-decoration: none; color: aqua" id="submitBtn"> Search</a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      {{{profileBtn}}}
     </div>
-    <!--filter and search results here -->
-    <div class="results filter extra">
+  </div>
+  <!--filter and search results here -->
+  <div class="results filter extra" id="result">
+    {{#each data}}
+    <div>
+      <h6 class="card"
+        style="font-size: 14px; padding: 30px; margin-top: 10px; margin-left: 300px; margin-right: 500px; margin-bottom: 30px; display: block; min-width: 300px; max-width: 500px;">
+        <strong>Airline : {{this}}</strong> <button class="btn btn-primary" style="margin-left: 10px">Book
+          Ticket</button></h6>
+
+
+      {{/each}}
     </div>
+  </div>
 </div>
 
 {{!-- Login Modal start --}}
