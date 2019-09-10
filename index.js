@@ -10,7 +10,7 @@ var checkToken = require("./middleware/check-authToken");
 
 app.use(
     bodyParser.urlencoded({
-        extended: false
+        extended: true
     })
 );
 app.use(bodyParser.json());
@@ -41,6 +41,7 @@ app.use(
 
 var searchResult = [];
 var airlineName = [];
+var origin;
 
 app.get("/", function(req, res) {
     var loginButton;
@@ -85,7 +86,7 @@ app.get("/profile", checkToken, (req, res) => {
 });
 
 app.post('/search', function (req, res) {
-  // console.log(JSON.stringify(req.body));
+  console.log(JSON.stringify(req.body));
   searchResult.push(req.body);
   var airlines = searchResult[0];
   var newAirlines = airlines.Carriers;
@@ -95,6 +96,7 @@ app.post('/search', function (req, res) {
   newAirlines.forEach((element, index, array) => {
     airlineName.push(element.Name);
   });
+  console.log(req.body.originPlace);
   console.log(airlineName);
   // console.log(JSON.stringify(searchResult));
   res.redirect('/');
