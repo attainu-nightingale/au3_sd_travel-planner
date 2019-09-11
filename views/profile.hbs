@@ -6,7 +6,7 @@
 <div>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="pb-navbar">
         <div class="container">
-            <a class="navbar-brand ml-0" href="index.html">Travel Planner</a>
+            <a class="navbar-brand ml-0" href="/">Travel Planner</a>
             <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse"
                 data-target="#probootstrap-navbar" aria-controls="probootstrap-navbar" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -14,24 +14,26 @@
             </button>
             <div class="collapse navbar-collapse" id="probootstrap-navbar">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item pr-4"><a class="nav-link" href="/hotel">Hotel</a></li>
+                    <li class="nav-item pr-4"><a class="nav-link" href="/hotels">Hotel</a></li>
                     <li class="nav-item pr-4"><a class="nav-link" href="/holiday">Holiday</a></li>
                     <li class="nav-item pr-4"><a class="nav-link" href="/faq">FAQ</a></li>
                     <li class="nav-item pr-4">
                         <div class="dropdown">
-  <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Profile
-  </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-      <a class="dropdown-item" href="/myaccount">My Account</a>
-      <a class="dropdown-item" href="#">Favorites</a>
-    <a class="dropdown-item" href="#">Something wrong! Contact Us</a>
-    
-      <a href="/logout" class="dropdown-item" >Log Out</a>
-    
-  </div>
-</div>
-                        
+                            <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Profile
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="/myaccount">My Account</a>
+                                <a class="dropdown-item" href="/hotels/bookings/">Hotel Bookings</a>
+                                <a class="dropdown-item" href="#">Flight Bookings</a>
+                                <a class="dropdown-item" href="#">Something wrong! Contact Us</a>
+
+                                <a href="/logout" class="dropdown-item">Log Out</a>
+
+                            </div>
+                        </div>
+
                         {{!-- {{{loginBtn}}} --}}
                     </li>
                     {{!-- <li class="nav-item pr-4">
@@ -41,6 +43,7 @@
             </div>
         </div>
     </nav>
+
     <div id="back-img">
         <div class="row">
             <div class="col-6">
@@ -96,9 +99,3 @@
 </div>
 
 {{!-- Login Modal start --}}
-
-
-
-<footer>
-    <p>&copy; Travel Planner | 2019 All Rights Reserved</p>
-</footer>

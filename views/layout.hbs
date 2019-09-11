@@ -2,19 +2,20 @@
 <html lang="en">
 
 <head>
-    <link rel="stylesheet" href="/styles.css" />
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css?family=Dancing+Script|Handlee|Pacifico|Satisfy&display=swap"
-        rel="stylesheet">
-    <title>{{title}}</title>
+  <link rel="stylesheet" href="/styles.css" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Dancing+Script|Handlee|Pacifico|Satisfy&display=swap"
+    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <title>{{title}}</title>
 </head>
 
 <body>
 
-    {{!-- Header Start --}}
+  {{!-- Header Start --}}
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="pb-navbar">
+  {{!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="pb-navbar">
         <div class="container">
             <a class="navbar-brand ml-0" href="/">Travel Planner</a>
             <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse"
@@ -36,31 +37,30 @@
                 </ul>
             </div>
         </div>
-    </nav>
+    </nav> --}}
 
-    {{!-- Header End --}}
 
-    {{{body}}}
+  {{!-- Header End --}}
 
-    {{!-- Footer Start --}}
+  {{{body}}}
 
-    <footer>
-        <p>&copy; Travel Planner | 2019 All Rights Reserved</p>
-    </footer>
+  {{!-- Footer Start --}}
 
-    {{!-- Footer End --}}
+  <footer class="page-footer font-small stickey-bottom">
+    <p>&copy; Travel Planner | 2019 All Rights Reserved</p>
+  </footer>
 
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
-        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
-        integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
-        </script>
-    <script src="script.js"></script>
-    <script src={{style}}></script>
-    <script src={{script}}></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
+    integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
+  {{!-- <script src="script.js"></script> --}}
+  <script src={{style}}></script>
+  <script src={{script}}></script>
 </body>
 
 </html>
