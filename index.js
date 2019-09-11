@@ -88,6 +88,24 @@ app.get("/profile", checkToken, (req, res) => {
   });
 });
 
+// app.post('/search', function(req, res) {
+//     //console.log(JSON.stringify(req.body));
+//     //console.log(req.body.value);
+//     searchResult.push(req.body);
+//     var airlines = searchResult[0];
+//     var newAirlines = airlines.Carriers;
+//     // console.log(airlines);
+//     // console.log(newAirlines);
+//     var newAirlines = airlines.Carriers;
+//     newAirlines.forEach((element, index, array) => {
+//         airlineName.push(element.Name);
+//     });
+//     //console.log(req.body.originPlace);
+//     //console.log(airlineName);
+//     // console.log(JSON.stringify(searchResult));
+//     res.redirect('/');
+// });
+
 app.get("/faq", function (req, res) {
   res.render("faq.hbs");
 });
@@ -154,9 +172,14 @@ app.get('/hotels/cityF/:data', function (req, res) {
       title: 'hotels',
       data: result,
       script: '/script.js'
-    });
-  });
-});
+    })
+
+  })
+})
+
+
+
+
 
 //working
 app.put('/myaccount/acc', checkToken, (req, res) => {
@@ -272,8 +295,8 @@ app.get('/hotels/bookings/', checkToken, (req, res) => {
     })
 
     console.log(result);
-  });
-});
+  })
+})
 
 app.listen(3000, function () {
   console.log("Listening on port 3000");
