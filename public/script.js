@@ -357,31 +357,36 @@ $("#submitBtn").on("click", function() {
             "x-rapidapi-key": "449a8cfbd7msh3d1dea399244b3fp1ac941jsne993d603032a"
         },
         success: data => {
+            $('#FlightResult').empty();
+            console.log(data)
+
             function flightpriceFunc() {
                 return Math.floor(Math.random() * 1000 + 2000);
             }
-            $('#FlightResult').empty();
-            console.log(data);
-            var flightSearchResult;
-            for (let i = 0; i < data.Carriers.length; i++) {
-                flightSearchResult += `
-                <div class="card">
-                <div class="card-header" value="${data.Carriers[i].CarrierId}">
-                Name : ${data.Carriers[i].Name}
-                </div>
-                <div class="card-body">
-                <span class="card-title">Price : ${flightpriceFunc()} </span>
-                <span class="card-title">Origin City : ${originInput} </span>
-                <span class="card-title">Destination City : ${destinationInput} </span> 
-                <span class="card-title"> Journey Date : ${outboundpartialdate} </span>
-                <span class="card-title"> Return Date : ${inboundpartialdate} </span>
-                 <br>
-                <a href="#" class="btn btn-primary">Book Now</a>
-                </div>
-                </div>
-                `;
+            console.log(data.Carriers.length);
+            var flightSearchResult = "";
+            if (data.Carriers) {
+                for (let i = 0; i < data.Carriers.length; i++) {
+                    flightSearchResult += `
+                    <div class="card">
+                    <div class="card-header" value="${data.Carriers[i].CarrierId}">
+                    Name : ${data.Carriers[i].Name}
+                    </div>
+                    <div class="card-body">
+                    <span class="card-title">Price : ${flightpriceFunc()} </span>
+                    <span class="card-title">Origin City : ${originInput} </span>
+                    <span class="card-title">Destination City : ${destinationInput} </span> 
+                    <span class="card-title"> Journey Date : ${outboundpartialdate} </span>
+                    <span class="card-title"> Return Date : ${inboundpartialdate} </span>
+                    <br>
+                    <a href="#" class="btn btn-primary">Book Now</a>
+                    </div>
+                    </div>
+                    `;
+                }
+                $("#FlightResult").append(flightSearchResult)
             }
-            $("#FlightResult").append(flightSearchResult)
+
         }
     });
 

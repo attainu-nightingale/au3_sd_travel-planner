@@ -6,6 +6,7 @@ var mongoClient = require("mongodb").MongoClient;
 var app = express();
 const jwt = require("jsonwebtoken");
 var auth = require("./routes/auth.js");
+var myTrips = require("./routes/myTrips/myFlights")
 var checkToken = require("./middleware/check-authToken");
 
 app.use(
@@ -31,7 +32,8 @@ mongoClient.connect(
     }
 );
 
-app.locals.ObjectId = require("mongodb").ObjectID;
+app.locals.ObjectId;
+ObjectId = require("mongodb").ObjectID;
 
 app.use(
     session({
@@ -42,7 +44,6 @@ app.use(
 var searchResult = [];
 var airlineName = [];
 var origin;
-
 app.get("/", function(req, res) {
     var loginButton;
     if (req.session.token) {
@@ -63,7 +64,7 @@ app.get("/", function(req, res) {
         signupBtn: signupBtn,
         profileBtn: profileBtn,
         //data: airlineName,
-        script: '/script.js'
+        script: "/script.js"
     });
 });
 
@@ -76,9 +77,11 @@ app.get("/logout", (req, res) => {
 
 //login authentication
 app.use("/authentication", auth);
-// protected Routes
+app.use('/', myTrips)
+    // protected Routes
 
 app.get("/profile", checkToken, (req, res) => {
+
     res.render("profile.hbs", {
         title: "User Profile",
         data: req.userData._id
@@ -91,7 +94,7 @@ app.get("/profile", checkToken, (req, res) => {
 //     searchResult.push(req.body);
 //     var airlines = searchResult[0];
 //     var newAirlines = airlines.Carriers;
-//     // console.log(airlines);  
+//     // console.log(airlines);
 //     // console.log(newAirlines);
 //     var newAirlines = airlines.Carriers;
 //     newAirlines.forEach((element, index, array) => {
@@ -107,7 +110,6 @@ app.get("/faq", function(req, res) {
     res.render("faq.hbs");
 });
 
-
 //Myaccount--works
 // app.get("/myaccount", checkToken, (req, res) => {
 //     res.render('myAcc.hbs', ({
@@ -115,43 +117,44 @@ app.get("/faq", function(req, res) {
 //         data: req.userData._id,
 //         script:'/script.js',
 
-
 //     }));
 // });
 
-app.get("/myaccount", checkToken, (req, res) => {
-    db.collection('users').find().toArray(function(error, result) {
-        if (error)
-            throw error;
-        res.render('myAcc.hbs', ({
-            title: "Account Details",
-            data: result,
-            script: '/script.js',
-
-
-        }));
-    });
+app.get("/myaccount", (req, res) => {
+    db.collection("users")
+        .findOne({
+            _id: ObjectId("5d696ccb499cda100323e701")
+        }, function(error, result) {
+            if (error) throw error;
+            //res.send(result)
+            res.render("myAcc.hbs", {
+                title: "Account Details",
+                data: result,
+                script: "/script.js"
+            });
+        });
 });
 
-hbs.registerHelper('checked', function(value, test) {
-    if (value == undefined) return '';
-    return value == test ? 'checked' : '';
+hbs.registerHelper("checked", function(value, test) {
+    if (value == undefined) return "";
+    return value == test ? "checked" : "";
 });
 
-app.put('/myaccount/acc', checkToken, (req, res) => {
-    var proId = req.userData._id
+app.put("/myaccount/acc", checkToken, (req, res) => {
+    var proId = req.userData._id;
     var updProfile = req.body;
-    var objectId = require('mongodb').ObjectId
-    db.collection('users').update({
-        "_id": new objectId(proId)
-    }, {
-        $set: updProfile
-    }, function(error, result) {
-        if (error)
-            throw error;
-        console.log(result);
-        // res.json(result);
-    });
+    var objectId = require("mongodb").ObjectId;
+    db.collection("users").update({
+            _id: new objectId(proId)
+        }, {
+            $set: updProfile
+        },
+        function(error, result) {
+            if (error) throw error;
+            console.log(result);
+            // res.json(result);
+        }
+    );
 });
 
 app.listen(3000, function() {
