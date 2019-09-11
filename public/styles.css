@@ -30,7 +30,7 @@ div #back-img {
 
 .search-box {
     background-color: rgb(255, 255, 255);
-    width: 450px;
+    width: 500px;
     height: 350px;
     float: right;
     margin-right: 150px;
@@ -191,3 +191,47 @@ body {
     font-size: 38px;
     transform: rotate(-1deg);
 }
+
+
+/* for hotel cards */
+
+.cardcls {
+    padding-top: 2%;
+    padding-bottom: 2%;
+    padding-left: 10%;
+}
+
+.cityMenu {
+    padding-top: 2%;
+    padding-left: 10%;
+}
+
+
+/* for hotel city buttons */
+
+.btn1 {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+
+/* Boostrap Buttons Styling */
+
+.btn-light {
+    font-family: Raleway-SemiBold;
+    font-size: 13px;
+    /* color: rgba(108, 88, 179, 0.75); */
+    letter-spacing: 1px;
+    line-height: 15px;
+    /* border: 2px solid rgba(108, 89, 179, 0.75); */
+    border-radius: 40px;
+    background: transparent;
+    transition: all 0.3s ease 0s;
+}
+
+
+/* .btn-light:hover {
+    color: #FFF;
+    background: rgba(108, 88, 179, 0.75);
+    border: 2px solid rgba(108, 89, 179, 0.75);
+  } */

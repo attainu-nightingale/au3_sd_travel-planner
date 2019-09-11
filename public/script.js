@@ -12,7 +12,7 @@ $("#loginToYourAccount").on("click", () => {
         success: data => {
             alert(data.success);
             console.log("data");
-            location.reload();
+            window.location.href = '/profile'
         }
     });
 });
@@ -368,20 +368,18 @@ $("#submitBtn").on("click", function() {
             if (data.Carriers) {
                 for (let i = 0; i < data.Carriers.length; i++) {
                     flightSearchResult += `
-                    <div class="card">
-                    <div class="card-header" value="${data.Carriers[i].CarrierId}">
+                    <div class="card pb-5">
+                    <div class="card-header">
                     Name : ${data.Carriers[i].Name}
                     </div>
                     <div class="card-body">
-                    <span class="card-title">Price : ${flightpriceFunc()} </span>
-                    <span class="card-title">Origin City : ${originInput} </span>
-                    <span class="card-title">Destination City : ${destinationInput} </span> 
-                    <span class="card-title"> Journey Date : ${outboundpartialdate} </span>
-                    <span class="card-title"> Return Date : ${inboundpartialdate} </span>
-                    <br>
-                    <a href="#" class="btn btn-primary">Book Now</a>
+                      <span class="card-title">Price : ${flightpriceFunc()} </span>
+                      <span class="card-title">Origin City : ${originInput} </span>
+                      <span class="card-title">Destination City : ${destinationInput} </span> 
+                      <span class="card-title"> Journey Date : ${outboundpartialdate} </span>
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="#" class="btn btn-primary">Book Now</a>
                     </div>
-                    </div>
+                  </div>
                     `;
                 }
                 $("#FlightResult").append(flightSearchResult)
@@ -389,60 +387,4 @@ $("#submitBtn").on("click", function() {
 
         }
     });
-
-    // $.ajax(settings).done(function(response) {
-    //     var flightResultOutput;
-    //     for (let i = 0; i < response.Quotes.length; i++) {
-    //         console.log(response.Quotes)
-    //         flightResultOutput +=
-    //             `<div class="card">
-    //             <div class="card-header">
-    //               Name : ${response.Quotes[i].OutboundLeg.CarrierIds}
-    //             </div>
-    //             <div class="card-body">
-    //               <h5 class="card-title">Price : ${response.Quotes[i].MinPrice}</h5>
-    //               <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-    //               <a href="#" class="btn btn-primary">Go somewhere</a>
-    //             </div>
-    //           </div>`
-
-    //     }
-    //     $("#FlightResult").append(flightResultOutput)
-
-    // });
-});
-//console.log(response);
-// $.ajax({
-//     url: '/search',
-//     type: 'POST',
-//     contentType: "application/json",
-//     dataType: 'json',
-//     data: JSON.stringify(response),
-//     success: function(data) {
-//         var flightResult;
-//         for (let i = 0; i < data.length; i++) {
-//             console.log(data.Carriers)
-//             flightResult += `
-//           <h6 class="card"
-//           style="font-size: 14px; padding: 30px; margin-top: 10px; margin-left: 300px; margin-right: 500px; margin-bottom: 30px; display: block; min-width: 300px; max-width: 500px;">
-//           <strong> Airline : ${data[i].Carriers[i].name} </strong> <button class="btn btn-primary" style="margin-left: 10px">Book
-//           Ticket</button></h6>
-//           `
-//         }
-//         $('#FlightResult').append(flightResult)
-
-//         //console.log('success');
-//         //console.log(JSON.stringify(data));
-//         //console.log(originplace, destinationplace)
-//     }
-// });
-//window.location.replace('/');
-
-// $.ajax({
-//   url: '/search',
-//   type: 'POST',
-//   data: {value: $('#originPlace').val()},
-//   success: function (data) {
-//     console.log(data);
-//   }
-// });
+})

@@ -35,6 +35,7 @@ mongoClient.connect(
 app.locals.ObjectId;
 ObjectId = require("mongodb").ObjectID;
 
+
 app.use(
     session({
         secret: "Hakumanata!! Timon and Pumba. Mogambo khush hua!!!"
@@ -81,7 +82,6 @@ app.use('/', myTrips)
     // protected Routes
 
 app.get("/profile", checkToken, (req, res) => {
-
     res.render("profile.hbs", {
         title: "User Profile",
         data: req.userData._id
@@ -120,42 +120,198 @@ app.get("/faq", function(req, res) {
 //     }));
 // });
 
-app.get("/myaccount", (req, res) => {
-    db.collection("users")
-        .findOne({
-            _id: ObjectId("5d696ccb499cda100323e701")
-        }, function(error, result) {
-            if (error) throw error;
-            //res.send(result)
-            res.render("myAcc.hbs", {
-                title: "Account Details",
-                data: result,
-                script: "/script.js"
-            });
+app.get("/myaccount", checkToken, (req, res) => {
+    db.collection('users').findOne({
+        _id: ObjectId(req.userData._id)
+    }, (err, result) => {
+        if (err) throw err;
+        res.render("myAcc.hbs", {
+            title: "Account Details",
+            data: result,
+            script: "/script.js"
         });
+    })
 });
 
-hbs.registerHelper("checked", function(value, test) {
-    if (value == undefined) return "";
-    return value == test ? "checked" : "";
+
+//custum helper for radio input
+hbs.registerHelper('checked', function(value, test) {
+    if (value == undefined) return '';
+    return value == test ? 'checked' : '';
 });
 
-app.put("/myaccount/acc", checkToken, (req, res) => {
-    var proId = req.userData._id;
+
+//get list of all hotels 
+app.get('/hotels', function(req, res) {
+    db.collection('hotels').find().toArray(function(error, result) {
+        if (error)
+            throw error;
+        res.render('hotels.hbs', {
+            title: 'hotels',
+            data: result,
+            script: '/script.js'
+        })
+    })
+});
+
+
+
+//city-filter query-working
+app.get('/hotels/cityF/:data', function(req, res) {
+    var cityId = req.params.data;
+    // console.log()
+    // var cityId="Delhi";
+    var objectId = require('mongodb').ObjectID;
+
+    db.collection('hotels').find({
+        "city": cityId
+    }).toArray(function(error, result) {
+        if (error)
+            throw error;
+        res.render('hotels.hbs', {
+            title: 'hotels',
+            data: result,
+            script: '/script.js'
+        })
+
+    })
+})
+
+
+
+
+
+//working
+app.put('/myaccount/acc', checkToken, (req, res) => {
+    var proId = req.userData._id
     var updProfile = req.body;
-    var objectId = require("mongodb").ObjectId;
-    db.collection("users").update({
-            _id: new objectId(proId)
+    var objectId = require('mongodb').ObjectId
+    db.collection('users').update({
+        "_id": new objectId(proId)
+    }, {
+        $set: updProfile
+    }, function(error, result) {
+        if (error)
+            throw error;
+        console.log(result);
+        // res.json(result);
+
+    })
+})
+
+//booking confirm-working
+// app.put('/hotels/book/:data',checkToken, (req, res) => {
+//     var proId=req.userData._id
+//         var hotelN= req.params.data;
+//         var objectId = require('mongodb').ObjectID;
+//         db.collection('trips').update({"_id": new objectId(proId)},{$set: {bookingHotel: hotelN}},function(error,result){
+//             if(error)
+//             throw error;
+//             console.log(result);
+
+
+//         })})
+
+
+//booking  confirmation final page-working
+app.put('/hotels/book/', checkToken, (req, res) => {
+    var proId = req.userData._id
+        // var hotelN= req.body;
+        // var objectId = require('mongodb').ObjectID;
+        // {bookingHotel: }
+        // db.collection('trips').update({"_id": new objectId(proId)},{$set: hotelN},{upsert:true},function(error,result){
+    db.collection('trips').insert(req.body, function(error, result) {
+
+        if (error)
+            throw error;
+        db.collection('trips').update(req.body, {
+            $set: {
+                "userid": proId
+            }
         }, {
-            $set: updProfile
-        },
-        function(error, result) {
-            if (error) throw error;
-            console.log(result);
-            // res.json(result);
-        }
-    );
-});
+            upsert: true
+        })
+        console.log(result);
+
+        // res.render('bookingC.hbs',{ 
+        //     title:'Confirm Booking',
+        //     data:result,
+        // script :'/script.js'})
+
+    })
+})
+
+//working
+// app.get('/hotels/bookings/:data1',checkToken, (req, res) => {
+//     var hotelN1= req.params.data1;
+//     var objectId = require('mongodb').ObjectID;
+
+// db.collection('trips').find({"bookingHotel":hotelN1}).toArray(function(error,result)
+// {
+//     if (error)
+//         throw error;
+//         res.render('bookingC.hbs',{ 
+//             title:'Confirm Booking',
+//             data:result,
+//         script :'/script.js'})
+
+
+
+//         })
+//     })
+
+
+
+//final confirm page of  hotel booking -works but only displays hotel name-working
+// app.get('/hotels/bookings/:data1',checkToken, (req, res) => {
+//     var hotelN1= req.params.data1;
+//     var objectId = require('mongodb').ObjectID;
+
+
+//         res.render('bookingC.hbs',{ 
+//             title:'Confirm Booking',
+//             data:hotelN1,
+//         script :'/script.js'})
+//         })
+
+
+
+//final confirm booking page for hotel with name and date-working
+app.get('/hotels/bookings/', checkToken, (req, res) => {
+    // var proId=req.userData._id
+    // var hotelN1= req.params.data1;
+
+    var objectId = require('mongodb').ObjectID;
+    // "hotelName":hotelN1
+    // db.collection('trips').find({"_id": new objectId(proId)},{"hotelName":hotelN1}).toArray(function(error,result)
+    db.collection('trips').find(req.body).toArray(function(error, result) {
+        if (error)
+            throw error;
+        // result.strinify=JSON.stringify(result);
+        res.render('bookingC.hbs', {
+            title: 'Confirm Booking',
+            data: result,
+            script: '/script.js'
+        })
+
+        console.log(result);
+    })
+
+
+
+
+
+})
+
+
+
+
+
+
+
+
+
+
 
 app.listen(3000, function() {
     console.log("Listening on port 3000");

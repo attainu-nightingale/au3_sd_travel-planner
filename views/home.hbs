@@ -1,5 +1,26 @@
 <div>
-
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="pb-navbar">
+    <div class="container">
+      <a class="navbar-brand ml-0" href="/">Travel Planner</a>
+      <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#probootstrap-navbar"
+        aria-controls="probootstrap-navbar" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="probootstrap-navbar">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item pr-4"><a class="nav-link" href="/hotels">Hotel</a></li>
+          <li class="nav-item pr-4"><a class="nav-link" href="/holiday">Holiday</a></li>
+          <li class="nav-item pr-4"><a class="nav-link" href="/faq">FAQ</a></li>
+          <li class="nav-item pr-4">
+            {{{loginBtn}}}
+          </li>
+          <li class="nav-item pr-4">
+            {{{signupBtn}}}
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
   <div id="back-img">
     <div class="row">
       <div class="col-6">
@@ -38,10 +59,8 @@
                 </div>
               </div>
             </form>
-            <div class="center">
-              <div class="button-2 button center">
-                <button class="btn btn-primary" id="submitBtn">Search</button>
-              </div>
+            <div class="center" style="margin-left: 170px ; margin-top: -30px">
+              <button class="btn btn-primary" style="width: 200px ; font-size: 20px" id="submitBtn">Search</button>
             </div>
           </div>
 
@@ -53,7 +72,7 @@
 
 </div>
 
-<div class="results filter extra m-5 p-5" id="FlightResult">
+<div class="results m-5 p-5 pb-5" id="FlightResult">
 
 </div>
 
