@@ -1,119 +1,201 @@
-  <style media="screen">
-    .wrap h3{
-      background-color : #C3EB78;
-      color: Black;
-      padding: 15px;
-      text-align : center;
-      margin : -25px -40px;
-    }
-    main {
-      background-color :  #A9CEF4;
-        margin-top : 60px;
-        border-radius:2px;
-    }
-   .wrap a{
-      text-decoration : none;
-        display : flex;
-        padding : 10px;
-      justify-content: center;
-      margin-top : 15px;
-      background-color: #F3F9D2;
-      color : black;
-    }
-    #Question section p {
-      display : none;
-      padding-left: 25px;
-      padding-right : 25px;
-        
-    }
-    #Question section a:hover{
-      text-decoration : none;
-    }
-    #Question section:target p {
-      display : block;
-        border-radius : 5%;
-    }
-   .wrap p{
-      font-size : 28px;
-        display : block;
-    }
-      footer {
-       margin-top :185px;
-         
-      }
-      .wrap {
-       margin :40px;
-        border-radius :10px;
-      }
-      body {
-          background-color :#7F95D1;
-      }
-      
-      
-  </style>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="pb-navbar">
-        <div class="container">
-            <a class="navbar-brand ml-0" href="/">Travel Planner</a>
-            <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse"
-                data-target="#probootstrap-navbar" aria-controls="probootstrap-navbar" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="probootstrap-navbar">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item pr-4"><a class="nav-link" href="/hotel">Hotel</a></li>
-                    <li class="nav-item pr-4"><a class="nav-link" href="/holiday">Holiday</a></li>
-                    <li class="nav-item pr-4"><a class="nav-link" href="/faq">FAQ</a></li>
-                    <li class="nav-item pr-4">
-                        {{{loginBtn}}}
-                    </li>
-                    <li class="nav-item pr-4">
-                        {{{signupBtn}}}
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-  
-   <div class="wrap">
-   <h3>Frequently Asked Questions</h3>
-    <main id="Question">
-      <section class="" id="ans1">
-        <a href="#ans1"><h2>Does Travel-Planner have family trips? </h2></a>
-        <p>
-          Travel-Planner offers a wide range of Family Adventures around the globe. The minimum age (for Family trips) varies depending on destination, and Intrepid has set minimum ages to ensure that the included activities suit each age range. Additionally, you’ll notice that some of the more adventurous destinations have a higher minimum age. Please view our family adventures for more information.
-        </p>
-      </section>
-      <section class="" id="ans2">
-        <a href="#ans2"><h2  >How do I organise my Visa?</h2></a>
-        <p>
-Please contact the relevant local embassy, or visit a travel agent, to organise your visa/s.        </p>
-      </section>
-      <section class="" id="ans3">
-        <a href="#ans3"><h2>Do you help with Visas?</h2></a>
-        <p>
-          we can’t assist in the actual application of visas, but you can do this through the embassy or with the support of a travel agent.
-        </p>
-      </section>
-      <section class="" id="ans4">
-        <a href="#ans4"><h2>How do I find out about the visa requirements for the trip I am interested in?</h2></a>
-        <p>
-          While we do include information in our Essential Trip Information about visa requirements, we always recommend that passengers check with their local embassy as visa rules can change without warning. Embassy websites in your home country will always have information about requirements, visa costs and will provide the required forms. If you are uncomfortable with the visa process, you can visit a travel agent who can arrange these for you at a cost.
+{{!-- <style media="screen">
+  .wrap h3 {
+    background-color: #C3EB78;
+    color: Black;
+    padding: 15px;
+    text-align: center;
+    margin: -25px -40px;
+  }
 
-        </p>
-      </section>
-      <section class="" id="ans5">
-        <a href="#ans5"><h2>
-What essential documents do I need to take?</h2></a>
-        <p>
-          It’s important that you always travel with your current passport, visas, travel insurance
-        </p>
-      </section>
+  main {
+    background-color: #A9CEF4;
+    margin-top: 60px;
+    border-radius: 2px;
+  }
 
-        
-    </main>
+  .wrap a {
+    text-decoration: none;
+    display: flex;
+    padding: 10px;
+    justify-content: center;
+    margin-top: 15px;
+    background-color: #F3F9D2;
+    color: black;
+  }
+
+  #Question section p {
+    display: none;
+    padding-left: 25px;
+    padding-right: 25px;
+
+  }
+
+  #Question section a:hover {
+    text-decoration: none;
+  }
+
+  #Question section:target p {
+    display: block;
+    border-radius: 5%;
+  }
+
+  .wrap p {
+    font-size: 28px;
+    display: block;
+  }
+
+  footer {
+    margin-top: 185px;
+
+  }
+
+  .wrap {
+    margin: 40px;
+    border-radius: 10px;
+  }
+
+  body {
+    background-color: #7F95D1;
+  }
+</style> --}}
+
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="pb-navbar">
+  <div class="container">
+    <a class="navbar-brand ml-0" href="/">Travel Planner</a>
+    <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#probootstrap-navbar"
+      aria-controls="probootstrap-navbar" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="probootstrap-navbar">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item pr-4"><a class="nav-link" href="/hotels">Hotel</a></li>
+        <li class="nav-item pr-4"><a class="nav-link" href="/holiday">Holiday</a></li>
+        <li class="nav-item pr-4"><a class="nav-link" href="/faq">FAQ</a></li>
+        <li class="nav-item pr-4">
+          {{{loginBtn}}}
+        </li>
+        <li class="nav-item pr-4">
+          {{{signupBtn}}}
+        </li>
+      </ul>
     </div>
+  </div>
+</nav>
 
-<footer>
-    <p style="font-size:16px; padding : 5px;">&copy; Travel Planner | 2019 All Rights Reserved</p>
-</footer>
+<div class="container mt-5 " style="margin-bottom: 400px">
+
+  <div class="accordion" id="accordionExample">
+    <div class="card">
+      <div class="card-header" id="headingOne">
+        <h2 class="mb-0">
+          <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne"
+            aria-expanded="true" aria-controls="collapseOne">
+            Does Travel-Planner have family trips?
+          </button>
+        </h2>
+      </div>
+
+      <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+        <div class="card-body">
+          Travel-Planner offers a wide range of Family Adventures around the globe. The minimum age (for Family trips)
+          varies depending on destination, and Intrepid has set minimum ages to ensure that the included activities suit
+          each age range. Additionally, you’ll notice that some of the more adventurous destinations have a higher
+          minimum
+          age. Please view our family adventures for more information.
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header" id="headingTwo">
+        <h2 class="mb-0">
+          <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo"
+            aria-expanded="false" aria-controls="collapseTwo">
+            How do I organise my Visa?
+          </button>
+        </h2>
+      </div>
+      <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+        <div class="card-body">
+          Please contact the relevant local embassy, or visit a travel agent, to organise your visa/s.
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header" id="headingThree">
+        <h2 class="mb-0">
+          <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree"
+            aria-expanded="false" aria-controls="collapseThree">
+            Do you help with Visas?
+          </button>
+        </h2>
+      </div>
+      <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+        <div class="card-body">
+          we can’t assist in the actual application of visas, but you can do this through the embassy or with the
+          support
+          of a travel agent.
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</div>
+{{!-- 
+<div class="wrap">
+  <h3>Frequently Asked Questions</h3>
+  <main id="Question">
+    <section class="" id="ans1">
+      <a href="#ans1">
+        <h2>Does Travel-Planner have family trips? </h2>
+      </a>
+      <p>
+        Travel-Planner offers a wide range of Family Adventures around the globe. The minimum age (for Family trips)
+        varies depending on destination, and Intrepid has set minimum ages to ensure that the included activities suit
+        each age range. Additionally, you’ll notice that some of the more adventurous destinations have a higher minimum
+        age. Please view our family adventures for more information.
+      </p>
+    </section>
+    <section class="" id="ans2">
+      <a href="#ans2">
+        <h2>How do I organise my Visa?</h2>
+      </a>
+      <p>
+        Please contact the relevant local embassy, or visit a travel agent, to organise your visa/s. </p>
+    </section>
+    <section class="" id="ans3">
+      <a href="#ans3">
+        <h2>Do you help with Visas?</h2>
+      </a>
+      <p>
+        we can’t assist in the actual application of visas, but you can do this through the embassy or with the support
+        of a travel agent.
+      </p>
+    </section>
+    <section class="" id="ans4">
+      <a href="#ans4">
+        <h2>How do I find out about the visa requirements for the trip I am interested in?</h2>
+      </a>
+      <p>
+        While we do include information in our Essential Trip Information about visa requirements, we always recommend
+        that passengers check with their local embassy as visa rules can change without warning. Embassy websites in
+        your home country will always have information about requirements, visa costs and will provide the required
+        forms. If you are uncomfortable with the visa process, you can visit a travel agent who can arrange these for
+        you at a cost.
+
+      </p>
+    </section>
+    <section class="" id="ans5">
+      <a href="#ans5">
+        <h2>
+          What essential documents do I need to take?</h2>
+      </a>
+      <p>
+        It’s important that you always travel with your current passport, visas, travel insurance
+      </p>
+    </section>
+
+
+  </main>
+</div> --}}

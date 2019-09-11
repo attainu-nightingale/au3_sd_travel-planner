@@ -1,21 +1,21 @@
-$('#loginToYourAccount').on('click', () => {
+$("#loginToYourAccount").on("click", () => {
   var loginData = {
     username: $("#loginUsername").val(),
-    password: $('#loginPassword').val()
-  }
-  console.log(loginData)
+    password: $("#loginPassword").val()
+  };
+  console.log(loginData);
   $.ajax({
     url: "/authentication/login",
     type: "POST",
     dataType: "json",
     data: loginData,
-    success: (data) => {
-      alert(data.success)
-      console.log("data")
-      location.reload()
+    success: data => {
+      alert(data.success);
+      console.log("data");
+      window.location.href = '/profile'
     }
-  })
-})
+  });
+});
 
 // $('#logOutBtn').on('click', () => {
 //     $.ajax({
@@ -29,74 +29,65 @@ $('#loginToYourAccount').on('click', () => {
 
 // })
 
-
-$('#signUpButton').on('click', () => {
+$("#signUpButton").on("click", () => {
   var signInData = {
     username: $("#signupUsername").val(),
     password: $("#signupPassword").val(),
-    confirmPass: $('#passMatch').val()
-  }
-  console.log(signInData)
+    confirmPass: $("#passMatch").val()
+  };
+  console.log(signInData);
   $.ajax({
     url: "/authentication/signup",
     type: "POST",
     dataType: "json",
     data: signInData,
-    success: (data) => {
-      alert(data)
+    success: data => {
+      alert(data);
     }
-  })
-})
+  });
+});
 
-$('#resetPassBtn').on('click', () => {
+$("#resetPassBtn").on("click", () => {
   var signInData = {
     username: $("#resetUsername").val(),
     password: $("#resetPassword").val(),
-    confirmPass: $('#resetPassMatch').val()
-  }
-  console.log(signInData)
+    confirmPass: $("#resetPassMatch").val()
+  };
+  console.log(signInData);
   $.ajax({
     url: "/authentication/resetpassword",
     type: "POST",
     dataType: "json",
     data: signInData,
-    success: (data) => {
-      alert(data)
+    success: data => {
+      alert(data);
     }
-  })
-})
+  });
+});
 
-
-
-$('#btnsubmit1').on("click", function () {
-
+$("#btnsubmit1").on("click", function () {
   var data = {
-    fname: $('#firstname').val(),
-    lname: $('#lastname').val(),
-    gender: $('input[name=gender]:checked', '#myForm').val(),
-    age: $('#age').val(),
-    email: $('#email').val(),
-    phone: $('#phone').val(),
-    city: $('#city').val(),
-    state: $('#state').val(),
-    address: $('#address').val()
-
-  }
+    fname: $("#firstname").val(),
+    lname: $("#lastname").val(),
+    gender: $("input[name=gender]:checked", "#myForm").val(),
+    age: $("#age").val(),
+    email: $("#email").val(),
+    phone: $("#phone").val(),
+    city: $("#city").val(),
+    state: $("#state").val(),
+    address: $("#address").val()
+  };
 
   $.ajax({
-    url: '/myaccount/acc',
-    type: 'PUT',
-    datatype: 'JSON',
+    url: "/myaccount/acc",
+    type: "PUT",
+    datatype: "JSON",
     data: data,
     success: function (data) {
-
       console.log(data);
     }
-
-  })
-
-})
-
+  });
+});
 
 // city filter buttons
 // $('#delhBtn').on("click",function(){
@@ -113,93 +104,80 @@ $('#btnsubmit1').on("click", function () {
 //     })
 // })
 
-
 // $('#delhBtn').off().on('click',function(){
 //filter each city hotels
-$('#Btn001').on('click', function () {
-
-
-  var data = $('button[name=nBtn001]').val();
+$("#Btn001").on("click", function () {
+  var data = $("button[name=nBtn001]").val();
   console.log("the city value is :" + data);
   $.ajax({
-    url: '/hotels/cityF/' + data,
-    type: 'GET',
+    url: "/hotels/cityF/" + data,
+    type: "GET",
     // dataType:'json',
     data: data,
     success: function (data) {
-      console.log(data)
+      console.log(data);
     }
-
-  })
+  });
   window.location.href = "http://localhost:3000/hotels/cityF/" + data;
-})
+});
 
-
-
-
-$('#Btn002').on('click', function () {
-
-
-  var data = $('button[name=nBtn002]').val();
+$("#Btn002").on("click", function () {
+  var data = $("button[name=nBtn002]").val();
   console.log("the city value is :" + data);
   $.ajax({
-    url: '/hotels/cityF/' + data,
-    type: 'GET',
+    url: "/hotels/cityF/" + data,
+    type: "GET",
     // dataType:'json',
     data: data,
     success: function (data) {
-      console.log(data)
+      console.log(data);
     }
-
-  })
+  });
   window.location.href = "http://localhost:3000/hotels/cityF/" + data;
-})
+});
 
-$('#Btn003').on('click', function () {
-
-
-  var data = $('button[name=nBtn003]').val();
+$("#Btn003").on("click", function () {
+  var data = $("button[name=nBtn003]").val();
   console.log("the city value is :" + data);
   $.ajax({
-    url: '/hotels/cityF/' + data,
-    type: 'GET',
+    url: "/hotels/cityF/" + data,
+    type: "GET",
     // dataType:'json',
     data: data,
     success: function (data) {
-      console.log(data)
+      console.log(data);
     }
-
-  })
+  });
   window.location.href = "http://localhost:3000/hotels/cityF/" + data;
-})
-
-
+});
 
 //fetch hotel values for booking
-$('.button-nav1').on('click', 'button', function () {
+$(".button-nav1").on("click", "button", function () {
   var data = {
     hotelName: $(this).attr("value"),
-    startDate: $('#fromDate').val(),
-    endDate: $('#toDate').val()
-
-  }
+    startDate: $("#fromDate").val(),
+    endDate: $("#toDate").val()
+  };
   //     hotelName:$('.card-title1').html()
   var data1 = $(this).attr("value");
   $.ajax({
-    url: 'hotels/book/',
-    type: 'PUT',
+    url: "hotels/book/",
+    type: "PUT",
     data: data,
     success: function (data) {
-      console.log(data)
+      console.log(data);
     }
-
-
-  })
-  alert("your stay at " + $(this).attr("value") + " is confirmed from " + $('#fromDate').val() + " to " + $('#toDate').val());
+  });
+  alert(
+    "your stay at " +
+    $(this).attr("value") +
+    " is confirmed from " +
+    $("#fromDate").val() +
+    " to " +
+    $("#toDate").val()
+  );
   // window.location.href="http://localhost:3000/hotels/bookings/"+data1;
 });
-
-
 
 //flight search script
 $(function () {
@@ -336,62 +314,76 @@ $(function () {
     "Vishakhapatnam(VTZ)",
     "Warangal(WGC)",
     "Zero(ZER)"
-  ]
+  ];
 
-  $('#originPlace').autocomplete({
+  $("#originPlace").autocomplete({
     source: cityCodes,
     minLength: 3
   });
 
-  $('#destinationPlace').autocomplete({
+  $("#destinationPlace").autocomplete({
     source: cityCodes,
     minLength: 3
   });
 });
 
-
-$('#submitBtn').on('click', function () {
-  $('#result').html('');
-  var originplace = $('#originPlace').val().match(/\((.*)\)/).pop();
+$("#submitBtn").on("click", function () {
+  //$("#result").html("");
+  var originInput = $("#originPlace").val();
+  var originplace = originInput.match(/\((.*)\)/).pop();
   // console.log(originplace);
-  var destinationplace = $('#destinationPlace').val().match(/\((.*)\)/).pop();
+  var destinationInput = $("#destinationPlace").val()
+  var destinationplace = destinationInput.match(/\((.*)\)/).pop();
   // console.log(destinationPlace);
-  var outboundpartialdate = $('#startDate').val();
-  var inboundpartialdate = $('#returnDate').val();
-
-  var settings = {
-    "async": true,
-    "crossDomain": true,
-    "url": "https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browsequotes/v1.0/IN/INR/en-IN/" + originplace + "/" + destinationplace + "/" + outboundpartialdate + "/" + "?" + inboundpartialdate,
-    "method": "GET",
-    "dataType": "json",
-    "headers": {
+  var outboundpartialdate = $("#startDate").val();
+  var inboundpartialdate = $("#returnDate").val();
+  //console.log(originInput, destinationInput)
+  $.ajax({
+    async: true,
+    // "crossDomain": true,
+    url: "https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browsequotes/v1.0/IN/INR/en-IN/" +
+      originplace +
+      "/" +
+      destinationplace +
+      "/" +
+      outboundpartialdate +
+      "/" +
+      "?" +
+      inboundpartialdate,
+    method: "GET",
+    dataType: "json",
+    headers: {
       "x-rapidapi-host": "skyscanner-skyscanner-flight-search-v1.p.rapidapi.com",
       "x-rapidapi-key": "449a8cfbd7msh3d1dea399244b3fp1ac941jsne993d603032a"
-    }
-  }
-  $.ajax(settings).done(function (response) {
-    console.log(response);
-    $.ajax({
-      url: '/search',
-      type: 'POST',
-      contentType: "application/json",
-      dataType: 'json',
-      data: JSON.stringify(response),
-      success: function (data) {
-        console.log('success');
-        console.log(JSON.stringify(data));
-      }
-    });
-    window.location.replace('/');
-  });
-});
+    },
+    success: data => {
+      $('#FlightResult').empty();
+      console.log(data)
 
-$.ajax({
-  url: '/search',
-  type: 'POST',
-  data: {value: $('#originPlace').val()},
-  success: function (data) {
-    console.log(data);
-  }
-});
+      function flightpriceFunc() {
+        return Math.floor(Math.random() * 1000 + 2000);
+      }
+      console.log(data.Carriers.length);
+      var flightSearchResult = "";
+      if (data.Carriers) {
+        for (let i = 0; i < data.Carriers.length; i++) {
+          flightSearchResult += `
+                    <div class="card pb-5">
+                    <div class="card-header">
+                    Name : ${data.Carriers[i].Name}
+                    </div>
+                    <div class="card-body">
+                      <span class="card-title">Price : ${flightpriceFunc()} </span>
+                      <span class="card-title">Origin City : ${originInput} </span>
+                      <span class="card-title">Destination City : ${destinationInput} </span> 
+                      <span class="card-title"> Journey Date : ${outboundpartialdate} </span>
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="#" class="btn btn-primary">Book Now</a>
+                    </div>
+                  </div>
+                    `;
+        }
+        $("#FlightResult").append(flightSearchResult)
+      }
+    }
+  });
+})

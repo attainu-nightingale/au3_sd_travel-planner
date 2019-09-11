@@ -1,5 +1,26 @@
 <div>
-
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="pb-navbar">
+    <div class="container">
+      <a class="navbar-brand ml-0" href="/">Travel Planner</a>
+      <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#probootstrap-navbar"
+        aria-controls="probootstrap-navbar" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="probootstrap-navbar">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item pr-4"><a class="nav-link" href="/hotels">Hotel</a></li>
+          <li class="nav-item pr-4"><a class="nav-link" href="/holiday">Holiday</a></li>
+          <li class="nav-item pr-4"><a class="nav-link" href="/faq">FAQ</a></li>
+          <li class="nav-item pr-4">
+            {{{loginBtn}}}
+          </li>
+          <li class="nav-item pr-4">
+            {{{signupBtn}}}
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
   <div id="back-img">
     <div class="row">
       <div class="col-6">
@@ -19,31 +40,27 @@
             <form autocomplete="on">
               <div class="row inside form-group ui-widget">
                 <div class="col">
-                  <input type="text" class="form-control ui-widget" placeholder="From" name="originPlace"
-                    id="originPlace" class="airport">
+                  <input type="text" class="form-control ui-widget" placeholder="From" id="originPlace" class="airport">
                 </div>
                 <div class="col" id="aright" style="margin-left: 0px; margin-right: 25px;">
-                  <input type="text" class="form-control" placeholder="To" name="destinationPlace" id="destinationPlace"
-                    class="airport">
+                  <input type="text" class="form-control" placeholder="To" id="destinationPlace" class="airport">
                 </div>
               </div>
               <!-- second row  -->
               <div class="row date top-fix">
                 <div class="col-md-5 inside  form-group">
                   <label for="">Start Date:</label>
-                  <input type="date" class="form-control" name="startDate" id="startDate">
+                  <input type="date" class="form-control" id="startDate">
                 </div>
                 <p><span id="position">&#8652;</span></p>
                 <div class="col-md-5 inside form-group">
                   <label for="">Return Date:</label>
-                  <input type="date" class="form-control" name="returnDate" id="returnDate">
+                  <input type="date" class="form-control" id="returnDate">
                 </div>
               </div>
             </form>
-            <div class="center">
-              <div class="button-2 button center">
-                <a href="#" style="text-decoration: none; color: aqua" id="submitBtn"> Search</a>
-              </div>
+            <div class="center" style="margin-left: 170px ; margin-top: -30px">
+              <button class="btn btn-primary" style="width: 200px ; font-size: 20px" id="submitBtn">Search</button>
             </div>
           </div>
 
@@ -52,20 +69,13 @@
       {{{profileBtn}}}
     </div>
   </div>
-  <!--filter and search results here -->
-  <div class="results filter extra" id="result">
-    {{#each data}}
-    <div>
-      <h6 class="card"
-        style="font-size: 14px; padding: 30px; margin-top: 10px; margin-left: 300px; margin-right: 500px; margin-bottom: 30px; display: block; min-width: 300px; max-width: 500px;">
-        <strong>Airline : {{this}}</strong> <button class="btn btn-primary" style="margin-left: 10px">Book
-          Ticket</button></h6>
-      {{/each}}
-    </div>
-  </div>
+
 </div>
 
-{{!-- Login Modal start --}}
+<div class="results m-5 p-5 pb-5" id="FlightResult">
+
+</div>
+
 
 <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="lgoinModalTitle"
   aria-hidden="true">
