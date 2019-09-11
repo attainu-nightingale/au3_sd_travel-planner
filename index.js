@@ -42,9 +42,6 @@ app.use(
   })
 );
 
-var searchResult = [];
-var airlineName = [];
-var origin;
 app.get("/", function (req, res) {
   var loginButton;
   if (req.session.token) {
@@ -87,24 +84,6 @@ app.get("/profile", checkToken, (req, res) => {
     data: req.userData._id
   });
 });
-
-// app.post('/search', function(req, res) {
-//     //console.log(JSON.stringify(req.body));
-//     //console.log(req.body.value);
-//     searchResult.push(req.body);
-//     var airlines = searchResult[0];
-//     var newAirlines = airlines.Carriers;
-//     // console.log(airlines);
-//     // console.log(newAirlines);
-//     var newAirlines = airlines.Carriers;
-//     newAirlines.forEach((element, index, array) => {
-//         airlineName.push(element.Name);
-//     });
-//     //console.log(req.body.originPlace);
-//     //console.log(airlineName);
-//     // console.log(JSON.stringify(searchResult));
-//     res.redirect('/');
-// });
 
 app.get("/faq", function (req, res) {
   res.render("faq.hbs");
