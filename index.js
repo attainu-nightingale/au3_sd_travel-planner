@@ -9,9 +9,9 @@ var auth = require("./routes/auth.js");
 var checkToken = require("./middleware/check-authToken");
 
 app.use(
-  bodyParser.urlencoded({
-    extended: true
-  })
+    bodyParser.urlencoded({
+        extended: true
+    })
 );
 app.use(bodyParser.json());
 app.use(express.static("public"));
@@ -22,56 +22,56 @@ var url = "mongodb://localhost:27017";
 app.locals.db;
 
 mongoClient.connect(
-  url, {
-    useNewUrlParser: true
-  },
-  function (err, client) {
-    if (err) throw err;
-    db = client.db("school"); //will change db name, when it is created
-  }
+    url, {
+        useNewUrlParser: true
+    },
+    function(err, client) {
+        if (err) throw err;
+        db = client.db("school"); //will change db name, when it is created
+    }
 );
 
 app.locals.ObjectId = require("mongodb").ObjectID;
 
 app.use(
-  session({
-    secret: "Hakumanata!! Timon and Pumba. Mogambo khush hua!!!"
-  })
+    session({
+        secret: "Hakumanata!! Timon and Pumba. Mogambo khush hua!!!"
+    })
 );
 
 var searchResult = [];
 var airlineName = [];
 var origin;
 
-app.get("/", function (req, res) {
-  var loginButton;
-  if (req.session.token) {
-    profileBtn = `<div class="button-properties button-3"><a href="/profile" id="heroprofileBtn" style="text-decoration: none; color: wheat">Profile</a></div>`;
-    (signupBtn = ""),
-    (loginButton = `<a href="/logout"><button class="btn btn-outline-success my-2 my-sm-0" data-toggle="modal"
+app.get("/", function(req, res) {
+    var loginButton;
+    if (req.session.token) {
+        profileBtn = `<div class="button-properties button-3"><a href="/profile" id="heroprofileBtn" style="text-decoration: none; color: wheat">Profile</a></div>`;
+        (signupBtn = ""),
+        (loginButton = `<a href="/logout"><button class="btn btn-outline-success my-2 my-sm-0" data-toggle="modal"
         data-target="#logOutBtn">Log Out</button></a>`);
-  } else {
-    (loginButton = `<button class="btn btn-outline-success my-2 my-sm-0" data-toggle="modal"
+    } else {
+        (loginButton = `<button class="btn btn-outline-success my-2 my-sm-0" data-toggle="modal"
         data-target="#loginModal">Login</button>`),
-    (signupBtn = `<button class="btn btn-outline-success my-2 my-sm-0" data-toggle="modal"
+        (signupBtn = `<button class="btn btn-outline-success my-2 my-sm-0" data-toggle="modal"
         data-target="#signupModal">Sign Up</button>`),
-    (profileBtn = "");
-  }
-  res.render("home.hbs", {
-    title: "Travel Planner",
-    loginBtn: loginButton,
-    signupBtn: signupBtn,
-    profileBtn: profileBtn,
-    data: airlineName,
-    script: '/script.js'
-  });
+        (profileBtn = "");
+    }
+    res.render("home.hbs", {
+        title: "Travel Planner",
+        loginBtn: loginButton,
+        signupBtn: signupBtn,
+        profileBtn: profileBtn,
+        //data: airlineName,
+        script: '/script.js'
+    });
 });
 
 // logout the user
 
 app.get("/logout", (req, res) => {
-  req.session.destroy();
-  res.redirect("/");
+    req.session.destroy();
+    res.redirect("/");
 });
 
 //login authentication
@@ -79,32 +79,32 @@ app.use("/authentication", auth);
 // protected Routes
 
 app.get("/profile", checkToken, (req, res) => {
-  res.render("profile.hbs", {
-    title: "User Profile",
-    data: req.userData._id
-  });
+    res.render("profile.hbs", {
+        title: "User Profile",
+        data: req.userData._id
+    });
 });
 
-app.post('/search', function (req, res) {
-  console.log(JSON.stringify(req.body));
-  console.log(req.body.value);
-  searchResult.push(req.body);
-  var airlines = searchResult[0];
-  var newAirlines = airlines.Carriers;
-  // console.log(airlines);  
-  // console.log(newAirlines);
-  var newAirlines = airlines.Carriers;
-  newAirlines.forEach((element, index, array) => {
-    airlineName.push(element.Name);
-  });
-  console.log(req.body.originPlace);
-  console.log(airlineName);
-  // console.log(JSON.stringify(searchResult));
-  res.redirect('/');
-});
+// app.post('/search', function(req, res) {
+//     //console.log(JSON.stringify(req.body));
+//     //console.log(req.body.value);
+//     searchResult.push(req.body);
+//     var airlines = searchResult[0];
+//     var newAirlines = airlines.Carriers;
+//     // console.log(airlines);  
+//     // console.log(newAirlines);
+//     var newAirlines = airlines.Carriers;
+//     newAirlines.forEach((element, index, array) => {
+//         airlineName.push(element.Name);
+//     });
+//     //console.log(req.body.originPlace);
+//     //console.log(airlineName);
+//     // console.log(JSON.stringify(searchResult));
+//     res.redirect('/');
+// });
 
-app.get("/faq", function (req, res) {
-  res.render("faq.hbs");
+app.get("/faq", function(req, res) {
+    res.render("faq.hbs");
 });
 
 
@@ -120,40 +120,40 @@ app.get("/faq", function (req, res) {
 // });
 
 app.get("/myaccount", checkToken, (req, res) => {
-  db.collection('users').find().toArray(function (error, result) {
-    if (error)
-      throw error;
-    res.render('myAcc.hbs', ({
-      title: "Account Details",
-      data: result,
-      script: '/script.js',
+    db.collection('users').find().toArray(function(error, result) {
+        if (error)
+            throw error;
+        res.render('myAcc.hbs', ({
+            title: "Account Details",
+            data: result,
+            script: '/script.js',
 
 
-    }));
-  });
+        }));
+    });
 });
 
-hbs.registerHelper('checked', function (value, test) {
-  if (value == undefined) return '';
-  return value == test ? 'checked' : '';
+hbs.registerHelper('checked', function(value, test) {
+    if (value == undefined) return '';
+    return value == test ? 'checked' : '';
 });
 
 app.put('/myaccount/acc', checkToken, (req, res) => {
-  var proId = req.userData._id
-  var updProfile = req.body;
-  var objectId = require('mongodb').ObjectId
-  db.collection('users').update({
-    "_id": new objectId(proId)
-  }, {
-    $set: updProfile
-  }, function (error, result) {
-    if (error)
-      throw error;
-    console.log(result);
-    // res.json(result);
-  });
+    var proId = req.userData._id
+    var updProfile = req.body;
+    var objectId = require('mongodb').ObjectId
+    db.collection('users').update({
+        "_id": new objectId(proId)
+    }, {
+        $set: updProfile
+    }, function(error, result) {
+        if (error)
+            throw error;
+        console.log(result);
+        // res.json(result);
+    });
 });
 
-app.listen(3000, function () {
-  console.log("Listening on port 3000");
+app.listen(3000, function() {
+    console.log("Listening on port 3000");
 });
