@@ -1,0 +1,19 @@
+<body style="background: linear-gradient(to right, #d31027, #ea384d);">
+  <div class="container ">
+    <div class="">
+      <h1 class="center" style="padding: 4px; margin:7px; display:block;"><kbd>Frequently Asked Questions</kbd></h1>
+      <a href="/adminlog" class="btn btn-warning btn-md" style="position : relative; top:-55px; left:1030px;">Admin? Log
+        in</a>
+
+    </div>
+    {{#each data}}
+
+    <div class="card card-body mb-3">
+      <h5>Q: {{this.question}}</h5>
+      <p style="font-weight:300;"><strong><i> A: {{this.answer}} </i> </strong> </p>
+
+    </div>
+    {{/each}}
+  </div>
+
+</body>

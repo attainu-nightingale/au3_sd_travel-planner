@@ -1,0 +1,32 @@
+<body style="background: linear-gradient(90deg,#0cebeb,#20e3b2,#29ffc6)">
+  <div class="container">
+    <div class="card card-body mt-5">
+      <h2 class="text-center"><kbd>Add FAQ</kbd></h2>
+      <form action="/addfaq" method="POST">
+        <div class="form-group">
+          <label for="question"> <i>Question :</i> </label>
+          <input type="text" class="form-control" required placeholder="Most asked Questions" id="question"
+            autocomplete="off" id="ques" name="question" required>
+        </div>
+        <div class="form-group">
+          <label for="answer"> <i> Answer : </i> </label>
+          <textarea id="answer" cols="30" rows="7" class="form-control" required autocomplete="off" id="ans"
+            style=" resize: none;" placeholder="Your Answer" name="answer" fixed placeholder="Enter your answer here"
+            required> </textarea>
+        </div>
+        <div>
+          <button type="submit" class="btn btn-dark mt-2 btn-block">
+            Create this FAQ
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <div class="md-5" style="margin-bottom:90px;">
+
+    </div>
+    {{!-- <script src="/create.js"></script> --}}
+
+  </div>
+
+</body>
