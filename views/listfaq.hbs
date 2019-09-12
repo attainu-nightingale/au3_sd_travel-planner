@@ -1,15 +1,17 @@
-<body style="background-color: #C7EFCF" >
+<body style="background: linear-gradient(45deg,#00c6ff,#0072ff)" >
 <div class="container">
 <h1 class="center" style="padding: 5px; margin:10px;"><kbd>FAQs</kbd></h1>
+
+<a href="/adminlogout" class="btn btn-dark btn-md" style="position : relative; top:-60px; left:1100px;">Log Out</a>
 {{#each data}}
   <div class="card card-body mb-3">
       <h5>Q: {{this.question}}</h5>
 <p style="font-weight:300; font-style:italic; "><b> A: {{this.answer}} </b> </p> <br>
-  <a href="/editfaq/{{_id}}" class="btn btn-dark mb-3 ">Edit FAQ</a>
+  <a href="/editfaq/{{_id}}" class="btn btn-info mb-3 ">Edit FAQ</a>
   
   <form action="/listfaq/{{_id}}?_method=DELETE" method="post" >
     <input type="hidden" name="_method" value="DELETE">
-    <input type="submit" value="Delete" class="btn  btn-block btn-secondary">
+    <input type="submit" value="Delete" class="btn  btn-block btn-warning">
   </form>
   
   </div>
