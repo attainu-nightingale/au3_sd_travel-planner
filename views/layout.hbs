@@ -1,98 +1,68 @@
-<div>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="pb-navbar">
-    <div class="container">
-      <a class="navbar-brand ml-0" href="/">Travel Planner</a>
-      <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#probootstrap-navbar"
-        aria-controls="probootstrap-navbar" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="probootstrap-navbar">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item pr-4"><a class="nav-link" href="/hotels">Hotel</a></li>
-          <li class="nav-item pr-4"><a class="nav-link" href="/holiday">Holiday</a></li>
-          <li class="nav-item pr-4"><a class="nav-link" href="/faq">FAQ</a></li>
-          <li class="nav-item pr-4">
-            <div class="dropdown">
-              <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton"
-                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Profile
-              </button>
-              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="/myaccount">My Account</a>
-                <a class="dropdown-item" href="/hotels/bookings/">Hotel Bookings</a>
-                <a class="dropdown-item" href="/flightBookings">Flight Bookings</a>
-                <a class="dropdown-item" href="#">Something wrong! Contact Us</a>
-                <a href="/logout" class="dropdown-item">Log Out</a>
-              </div>
-            </div>
-            {{!-- {{{loginBtn}}} --}}
-          </li>
-          {{!-- <li class="nav-item pr-4">
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <link rel="stylesheet" href="/styles.css" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Dancing+Script|Handlee|Pacifico|Satisfy&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <title>{{title}}</title>
+</head>
+
+<body>
+
+  {{!-- Header Start --}}
+
+  {{!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="pb-navbar">
+        <div class="container">
+            <a class="navbar-brand ml-0" href="/">Travel Planner</a>
+            <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse"
+                data-target="#probootstrap-navbar" aria-controls="probootstrap-navbar" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="probootstrap-navbar">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item pr-4"><a class="nav-link" href="/hotel">Hotel</a></li>
+                    <li class="nav-item pr-4"><a class="nav-link" href="/holiday">Holiday</a></li>
+                    <li class="nav-item pr-4"><a class="nav-link" href="/faq">FAQ</a></li>
+                    <li class="nav-item pr-4">
+                        {{{loginBtn}}}
+                    </li>
+                    <li class="nav-item pr-4">
                         {{{signupBtn}}}
-                    </li> --}}
-        </ul>
-      </div>
-    </div>
-  </nav>
-</div>
-{{!-- booking date --}}
-<div style="margin-left:10%;padding-left:.5%;margin-top:2%">
-  <h5>Select duration of stay at hotel</h5>
-  <form style="display:inline-block">
-    <div class="">
-      <label for="fromDate">From </label>
-      <input type="date" name="fromDate" id="fromDate" class="" />
-      {{!-- </div>
-            <div class=""> --}}
-      <label for="toDate">To</label>
-      <input type="date" name="toDate" id="toDate" class="" />
-    </div>
-  </form>
-</div>
-<div class="cityMenu">
-  <h5 style="padding-left:.5%">Select hotels by city :</h5>
-  <span><button type="button" id="Btn001" name="nBtn001" value="Delhi" class="btn btn1 btn-light">Delhi</button>
-    &nbsp;&nbsp;
-    <button type="button" id="Btn002" name="nBtn002" value="Mumbai" class="btn btn1 btn-light">Mumbai</button>
-    <button type="button" id="Btn003" name="nBtn003" value="Bangalore" class="btn btn1 btn-light">Bangalore</button>
-  </span>
-</div>
-<div class="cardcls">
-  {{!-- <div class="container-fluid"> --}}
-  {{#each data}}
-  <div class="card mb-3" style="max-width: 80%;">
-    <div class="row no-gutters">
-      <div class="col-md-2">
-        <img src={{this.img}} class="card-img" alt="...">
-      </div>
-      <div class="col-md-10">
-        <div class="card-body">
-          <h5 class="card-title">{{this.hName}}</h5>
-          <p class="card-text">{{this.desc}} </p>
-          <p class="card-text"><i class="material-icons" style="font-size:15px">directions</i> {{this.address}} </p>
-          <p class="card-text"><i class="material-icons" style="font-size:20px">place</i><small
-              class="text-muted">{{this.city}}</small></p>
-          <div class="button-nav1">
-            <button type="button" value="{{this.hName}}" class="btn btn-primary card-text">Book Hotel</button>
-          </div>
+                    </li>
+                </ul>
+            </div>
         </div>
-      </div>
-    </div>
-  </div>
-  {{/each}}
-  {{!-- <div class="card mb-3" style="max-width: 80%;">
-  <div class="row no-gutters">
-    <div class="col-md-2">
-      <img src="https://imgsv.imaging.nikon.com/lineup/dslr/d600/img/sample01/img_05_l.jpg" class="card-img" alt="...">
-    </div>
-    <div class="col-md-10">
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-      </div>
-    </div>
-  </div>
-</div> --}}
-  {{!-- </div> --}}
-</div>
+    </nav> --}}
+
+
+  {{!-- Header End --}}
+
+  {{{body}}}
+
+  {{!-- Footer Start --}}
+
+  <footer class="page-footer font-small stickey-bottom">
+    <p>&copy; Travel Planner | 2019 All Rights Reserved</p>
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
+    integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  {{!-- <script src="script.js"></script> --}}
+  <script src={{style}}></script>
+  <script src={{script}}></script>
+</body>
+
+</html>
