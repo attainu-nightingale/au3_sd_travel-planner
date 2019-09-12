@@ -16,7 +16,6 @@ $("#loginToYourAccount").on("click", () => {
         }
     });
 });
-​
 // $('#logOutBtn').on('click', () => {
 //     $.ajax({
 //         url: "/logout",
@@ -26,9 +25,7 @@ $("#loginToYourAccount").on("click", () => {
 //             console.log("User Logged Out")
 //         }
 //     })
-​
 // })
-​
 $("#signUpButton").on("click", () => {
     var signInData = {
         username: $("#signupUsername").val(),
@@ -46,7 +43,6 @@ $("#signUpButton").on("click", () => {
         }
     });
 });
-​
 $("#resetPassBtn").on("click", () => {
     var signInData = {
         username: $("#resetUsername").val(),
@@ -64,7 +60,6 @@ $("#resetPassBtn").on("click", () => {
         }
     });
 });
-​
 $("#btnsubmit1").on("click", function() {
     var data = {
         fname: $("#firstname").val(),
@@ -77,7 +72,6 @@ $("#btnsubmit1").on("click", function() {
         state: $("#state").val(),
         address: $("#address").val()
     };
-​
     $.ajax({
         url: "/myaccount/acc",
         type: "PUT",
@@ -88,7 +82,6 @@ $("#btnsubmit1").on("click", function() {
         }
     });
 });
-​
 // city filter buttons
 // $('#delhBtn').on("click",function(){
 //     var data=$('#delhBtn').val();
@@ -103,7 +96,6 @@ $("#btnsubmit1").on("click", function() {
 //         }
 //     })
 // })
-​
 // $('#delhBtn').off().on('click',function(){
 //filter each city hotels
 $("#Btn001").on("click", function() {
@@ -120,7 +112,6 @@ $("#Btn001").on("click", function() {
     });
     window.location.href = "http://localhost:3000/hotels/cityF/" + data;
 });
-​
 $("#Btn002").on("click", function() {
     var data = $("button[name=nBtn002]").val();
     console.log("the city value is :" + data);
@@ -135,7 +126,6 @@ $("#Btn002").on("click", function() {
     });
     window.location.href = "http://localhost:3000/hotels/cityF/" + data;
 });
-​
 $("#Btn003").on("click", function() {
     var data = $("button[name=nBtn003]").val();
     console.log("the city value is :" + data);
@@ -150,7 +140,6 @@ $("#Btn003").on("click", function() {
     });
     window.location.href = "http://localhost:3000/hotels/cityF/" + data;
 });
-​
 //fetch hotel values for booking
 $(".button-nav1").on("click", "button", function() {
     var data = {
@@ -178,7 +167,6 @@ $(".button-nav1").on("click", "button", function() {
     );
     // window.location.href="http://localhost:3000/hotels/bookings/"+data1;
 });
-​
 //flight search script
 $(function() {
     var cityCodes = [
@@ -315,18 +303,15 @@ $(function() {
         "Warangal(WGC)",
         "Zero(ZER)"
     ];
-​
     $("#originPlace").autocomplete({
         source: cityCodes,
         minLength: 3
     });
-​
     $("#destinationPlace").autocomplete({
         source: cityCodes,
         minLength: 3
     });
 });
-​
 $("#submitBtn").on("click", function() {
     //$("#result").html("");
     var originInput = $("#originPlace").val();
@@ -359,7 +344,6 @@ $("#submitBtn").on("click", function() {
         success: data => {
             $('#FlightResult').empty();
             console.log(data)
-​
             function flightpriceFunc() {
                 return Math.floor(Math.random() * 1000 + 2000);
             }
@@ -387,8 +371,6 @@ $("#submitBtn").on("click", function() {
         }
     });
 })
-​
-​
 $(document).on("click", ".flightBookingBtn", function() {
     var flightBookingData = {
         originCity: $(this).parent().children('.originCity').attr("value"),
@@ -409,10 +391,7 @@ $(document).on("click", ".flightBookingBtn", function() {
             alert("Flight Booked")
         }
     })
-​
 })
-​
-​
 $.ajax({
     url: "flightBookings/getMyBookings",
     type: "GET",
@@ -439,7 +418,3 @@ $.ajax({
         $('#myBookedFlights').append(outputMyBookings)
     }
 })
-
-
-
-
