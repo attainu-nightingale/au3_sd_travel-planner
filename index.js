@@ -1,5 +1,6 @@
 var express = require("express");
 var session = require("express-session");
+var methodOverride = require('method-override');
 var hbs = require("hbs");
 var bodyParser = require("body-parser");
 var mongoClient = require("mongodb").MongoClient;
@@ -7,10 +8,18 @@ var app = express();
 const jwt = require("jsonwebtoken");
 var auth = require("./routes/auth.js");
 var checkToken = require("./middleware/check-authToken");
+var db;
+
+app.use(bodyParser.urlencoded({extended: true}));
+
+app.use(bodyParser.urlencoded());
+
+app.use(methodOverride('_method'));
+
 
 app.use(
     bodyParser.urlencoded({
-        extended: false
+        extended: true
     })
 );
 app.use(bodyParser.json());
@@ -28,6 +37,7 @@ mongoClient.connect(
     function(err, client) {
         if (err) throw err;
         db = client.db("school"); //will change db name, when it is created
+        db = client.db("faq"); 
     }
 );
 
@@ -100,9 +110,151 @@ app.post('/search', function (req, res) {
   res.redirect('/');
 });
 
+//faq section starts here
+
+// mongoClient.connect("mongodb://localhost:27017",function(err,client){
+//   if (err) throw err;
+//   db = client.db('faq');
+// })
+
+//home page
 app.get("/faq", function(req, res) {
-    res.render("faq.hbs");
+    db.collection("addfaq").find().toArray(function(err,result){
+        if(err) throw err;
+            res.render("displayfaq",{
+                data : result,
+                title : "List of FAQ",
+                script: "/create.js"
+            });
+      }); 
 });
+
+
+//add the faq
+app.get('/faq/create', function (req, res) {
+    res.render('create',{
+        title:"Add your FAQ"
+    });
+});
+
+
+app.post("/addfaq", function(req,res){
+    db.collection("addfaq").insertOne(req.body);
+    console.log(req.body);
+    res.redirect("/listfaq");
+});
+
+//displaying the FAQ
+app.get("/listfaq", function(req,res){
+    db.collection("addfaq").find().toArray(function(err,result){
+        if(err) throw err;
+            res.render("listfaq",{
+                data : result,
+                title : "FAQ",
+                script: "/create.js"
+            });
+    }); 
+});
+//for string 
+
+
+
+app.get('/editfaq/:id', function (req, res) {
+    var faq= {
+        question: req.body.question,
+        answer: req.body.answer
+    };
+db.collection("addfaq").find({_id : req.params.id}).toArray(function(err,result){
+    if(err) throw err;
+        res.render("editfaq",{
+            data : result,
+            title : "Edit FAQ",
+            question : req.body.question,
+            answer : req.body.answer
+        });
+    }); 
+});
+
+//Update part
+app.put('/listfaq/:id', function(req,res){
+    db.collection('addfaq').findOne({_id: req.params.id}).toArray(function(err,result){
+        if(error) throw err
+//        .then( db.collection('addfaq') => {
+//             addfaq.question = req.body.question;
+//            addfaq.answer = req.body.answer;
+//        })
+    })
+});
+
+
+//delete process
+app.delete("/listfaq/:_id", function(req,res){
+    db.collection('addfaq').deleteOne({_id:require('mongodb').ObjectID(req.params._id
+    )}, function(error,result){
+        if(error) 
+    throw error
+            res.redirect('/listfaq');
+    });
+});
+
+
+//faq section ends here
+
+
+
+//Myaccount--works
+// app.get("/myaccount", checkToken, (req, res) => {
+//     res.render('myAcc.hbs', ({
+//         title: "Account Details",
+//         data: req.userData._id,
+//         script:'/script.js',
+
+
+//     }));
+// });
+
+
+
+
+
+app.get("/myaccount", checkToken, (req, res) => {
+    db.collection('users').find().toArray(function(error,result){
+        if(error)
+        throw error;
+    res.render('myAcc.hbs', ({
+        title: "Account Details",
+        data: result,
+        script:'/script.js',
+
+
+    }));
+});
+
+
+})
+
+hbs.registerHelper('checked', function(value, test) {
+    if (value == undefined) return '';
+    return value==test ? 'checked' : '';
+});
+
+
+app.put('/myaccount/acc',checkToken, (req, res) => {
+var proId=req.userData._id
+    var updProfile= req.body;
+    var objectId=require('mongodb').ObjectId
+    db.collection('users').update({"_id": new objectId(proId)},{$set: updProfile},function(error,result){
+        if(error)
+        throw error;
+        console.log(result);
+        // res.json(result);
+    
+
+})
+
+
+}) 
+
 
 app.listen(3000, function() {
     console.log("Listening on port 3000");
