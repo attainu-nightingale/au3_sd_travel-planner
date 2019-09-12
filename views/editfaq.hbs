@@ -1,0 +1,33 @@
+<body style="background-color: darkslategray">
+  
+    <div class="container">
+       <div class="card card-body mt-5">
+       <h2 class="text-center"><kbd>Edit FAQ</kbd></h2>
+        <form action="/addfaq/{{data.id}}?_method=PUT" method="post">
+        <input type="hidden" name="_method" value="PUT">
+         <div class="form-group"  >
+           <label for="question"> <i> Question :</i> </label>
+            <input type="text" class="form-control" required  id="question" autocomplete="off" id="ques" name="question" 
+            value = "{{data.question}}"  required >
+    </div> 
+          <div class="form-group" >
+          <label for="answer"> <i> Answer : </i> </label>
+          <textarea  id="answer" cols="30" rows="6" class="form-control" required autocomplete="off"  id="ans"  style=" resize: none;"  name="answer"   
+          required >{{data.answer}} </textarea>
+          </div>
+          <div>
+    
+          <button  type="submit" class="btn btn-info mt-2 btn-block"  >
+            Update this FAQ 
+            </button>
+        </div>
+        </form>
+        </div>
+
+      <div class="md-5" style="margin-bottom:90px;">
+          
+      </div>
+  
+    </div>
+  
+</body>
