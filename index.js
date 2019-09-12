@@ -202,20 +202,16 @@ app.put('/hotels/book/', checkToken, (req, res) => {
             upsert: true
         })
         console.log(result);
-​
         // res.render('bookingC.hbs',{ 
         //     title:'Confirm Booking',
         //     data:result,
         // script :'/script.js'})
-​
     })
 })
-​
 //working
 // app.get('/hotels/bookings/:data1',checkToken, (req, res) => {
 //     var hotelN1= req.params.data1;
 //     var objectId = require('mongodb').ObjectID;
-​
 // db.collection('trips').find({"bookingHotel":hotelN1}).toArray(function(error,result)
 // {
 //     if (error)
@@ -224,9 +220,6 @@ app.put('/hotels/book/', checkToken, (req, res) => {
 //             title:'Confirm Booking',
 //             data:result,
 //         script :'/script.js'})
-​
-​
-​
 //         })
 //     })
 
