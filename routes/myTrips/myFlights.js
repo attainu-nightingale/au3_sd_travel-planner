@@ -1,21 +1,18 @@
 const express = require("express");
 const router = express.Router();
 const mongoClient = require("mongodb").mongoClient;
-​
 router.get("/", (req, res) => {
     res.render("myFlights.hbs", {
         title: "My Flight Bookings",
         script: "/script.js"
     });
 });
-​
 // router.get('/BookedFlights', (req, res) => {
 //     db.collection('myTrips').find().toArray((err, result) => {
 //         if (err) throw err;
 //         res.json(result)
 //     })
 // })
-​
 router.post("/addMyFlights", (req, res) => {
     db.collection("myTrips").insertOne({
             userId: ObjectId(req.userData._id),
@@ -28,7 +25,6 @@ router.post("/addMyFlights", (req, res) => {
         }
     );
 });
-​
 router.get("/getMyBookings", (req, res) => {
     db.collection("users")
         .aggregate([{
@@ -50,7 +46,6 @@ router.get("/getMyBookings", (req, res) => {
             res.json(result)
         });
 });
-​
 module.exports = router;
 
 
