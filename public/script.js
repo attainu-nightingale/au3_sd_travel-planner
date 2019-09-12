@@ -429,3 +429,26 @@ $.ajax({
         $('#myBookedFlights').append(outputMyBookings)
     }
 })
+
+//holdidays script
+$('#holidayGoa,#holidayAndaman,#holidayKashmir').on("click", function() {
+
+    var data = {
+
+        packageName: $(this).val(),
+        holidayFrom: $("#fromDate1").val(),
+        holidayTo: $("#toDate1").val()
+    }
+    $.ajax({
+        url: "/holidays/submit/",
+        type: "PUT",
+        // datatype: "JSON",
+        data: data,
+        success: function(data) {
+            console.log(data);
+        }
+    });
+    alert("Your request for the enquiry of " + $(this).val() + " holiday package from " + $("#fromDate1").val() + " to " + $("#toDate1").val() + " is submitted successfully.Our customer care representative will contact you and provide you with the best package available.")
+
+
+})

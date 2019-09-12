@@ -235,3 +235,34 @@ body {
     background: rgba(108, 88, 179, 0.75);
     border: 2px solid rgba(108, 89, 179, 0.75);
   } */
+  
+
+
+  /* Holidays css */
+
+  .carousel-item {
+    height: 65vh;
+    min-height: 350px;
+    background: no-repeat center center scroll;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
+  .fix-im {
+      position: relative;
+      bottom:11rem;
+  }
+  @media screen and (max-width:768px){
+  .flex-100 {
+      -ms-flex: 0 0 100%;
+      flex: 0 0 100%;
+      max-width: 100%;
+  }
+  .fix-im {bottom: 0rem;}
+  }
+  .ugali {
+      /* background:grey; */
+      /* background: black; */
+      padding: 6px;
+  }
