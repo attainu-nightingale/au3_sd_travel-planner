@@ -156,26 +156,25 @@ app.get('/hotels', function(req, res) {
 
 
 
-//city-filter query-working
-app.get('/hotels/cityF/:data', function(req, res) {
-    var cityId = req.params.data;
+//city-filter query
+app.get('/hotels/cityF/:data',function(req,res){
+    var cityId=req.params.data;
     // console.log()
     // var cityId="Delhi";
     var objectId = require('mongodb').ObjectID;
-
-    db.collection('hotels').find({
-        "city": cityId
-    }).toArray(function(error, result) {
+    
+    db.collection('hotels').find({"city":cityId}).toArray(function(error,result)
+    {
         if (error)
             throw error;
-        res.render('hotels.hbs', {
-            title: 'hotels',
-            data: result,
-            script: '/script.js'
-        })
+    res.render('hotels.hbs',{ 
+        title:'hotels',
+        data:result,
+    script :'/script.js'})
 
-    })
 })
+})
+
 
 
 
@@ -284,7 +283,7 @@ app.get('/hotels/bookings/', checkToken, (req, res) => {
     var objectId = require('mongodb').ObjectID;
     // "hotelName":hotelN1
     // db.collection('trips').find({"_id": new objectId(proId)},{"hotelName":hotelN1}).toArray(function(error,result)
-    db.collection('trips').find(req.body).toArray(function(error, result) {
+    db.collection('trips').find({"userid":req.userData._id}).toArray(function(error, result) {
         if (error)
             throw error;
         // result.strinify=JSON.stringify(result);
@@ -294,17 +293,48 @@ app.get('/hotels/bookings/', checkToken, (req, res) => {
             script: '/script.js'
         })
 
-        console.log(result);
+        // console.log(result);
     })
 
+})
 
-
-
-
+//packages
+app.get('/holiday',function(req,res){
+    res.render('holidays.hbs',{
+        title:'Holidays & Travel Packages',
+        script:'/script.js'
+    });
 })
 
 
 
+//book package
+app.put('/holidays/submit/', checkToken, (req, res) => {
+    var proId = req.userData._id
+        // var hotelN= req.body;
+        // var objectId = require('mongodb').ObjectID;
+        // {bookingHotel: }
+        // db.collection('trips').update({"_id": new objectId(proId)},{$set: hotelN},{upsert:true},function(error,result){
+    db.collection('holidays').insert(req.body, function(error, result) {
+
+        if (error)
+            throw error;
+        db.collection('holidays').update(req.body, {
+            $set: {
+                "userid": proId
+            }
+        }, {
+            upsert: true
+        })
+        console.log(result);
+
+        // res.render('bookingC.hbs',{ 
+        //     title:'Confirm Booking',
+        //     data:result,
+        // script :'/script.js'})
+
+    })
+})
 
 
 

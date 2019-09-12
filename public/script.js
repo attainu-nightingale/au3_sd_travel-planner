@@ -87,6 +87,7 @@ $("#btnsubmit1").on("click", function() {
             console.log(data);
         }
     });
+    alert("Profile Updated Successfully !!!")
 });
 
 // city filter buttons
@@ -121,20 +122,30 @@ $("#Btn001").on("click", function() {
     window.location.href = "http://localhost:3000/hotels/cityF/" + data;
 });
 
-$("#Btn002").on("click", function() {
-    var data = $("button[name=nBtn002]").val();
-    console.log("the city value is :" + data);
+$('#Btn002').on('click',function(){
+        
+    var data=$('button[name=nBtn002]').val();
+    console.log("the city value is :"+data);
     $.ajax({
-        url: "/hotels/cityF/" + data,
-        type: "GET",
+        url:'/hotels/cityF/'+data,
+        type:'GET',
         // dataType:'json',
-        data: data,
-        success: function(data) {
-            console.log(data);
-        }
-    });
-    window.location.href = "http://localhost:3000/hotels/cityF/" + data;
-});
+        data:data,
+        success:function(data){
+             console.log(data)
+               }
+
+    })
+    window.location.href="http://localhost:3000/hotels/cityF/"+data;
+})
+// $("#Btn002").on("click",function(){
+//     var data = $("button[name=nBtn002]").val();
+//     window.location.href = "http://localhost:3000/hotels/cityF/" + data;
+
+// })
+
+
+
 
 $("#Btn003").on("click", function() {
     var data = $("button[name=nBtn003]").val();
@@ -158,16 +169,19 @@ $(".button-nav1").on("click", "button", function() {
         startDate: $("#fromDate").val(),
         endDate: $("#toDate").val()
     };
+    console.log("data fetched"+data)
     //     hotelName:$('.card-title1').html()
     var data1 = $(this).attr("value");
     $.ajax({
-        url: "hotels/book/",
+        url: "/hotels/book/",
         type: "PUT",
+        // datatype: "JSON",
         data: data,
         success: function(data) {
             console.log(data);
         }
     });
+    console.log(data);
     alert(
         "your stay at " +
         $(this).attr("value") +
@@ -388,3 +402,32 @@ $("#submitBtn").on("click", function() {
         }
     });
 })
+
+
+
+
+
+
+//holdidays script
+$('#holidayGoa,#holidayAndaman,#holidayKashmir').on("click",function(){
+
+var data= {
+
+    packageName: $(this).val(),
+    holidayFrom: $("#fromDate1").val(),
+    holidayTo:$("#toDate1").val()
+}
+$.ajax({
+    url: "/holidays/submit/",
+    type: "PUT",
+    // datatype: "JSON",
+    data: data,
+    success: function(data) {
+        console.log(data);
+    }
+});
+alert("Your request for the enquiry of "+ $(this).val()+" holiday package from "+$("#fromDate1").val()+" to "+$("#toDate1").val()+" is submitted successfully.Our customer care representative will contact you and provide you with the best package available.")
+
+
+})
+
