@@ -16,7 +16,7 @@ $("#loginToYourAccount").on("click", () => {
         }
     });
 });
-
+​
 // $('#logOutBtn').on('click', () => {
 //     $.ajax({
 //         url: "/logout",
@@ -26,9 +26,9 @@ $("#loginToYourAccount").on("click", () => {
 //             console.log("User Logged Out")
 //         }
 //     })
-
+​
 // })
-
+​
 $("#signUpButton").on("click", () => {
     var signInData = {
         username: $("#signupUsername").val(),
@@ -46,7 +46,7 @@ $("#signUpButton").on("click", () => {
         }
     });
 });
-
+​
 $("#resetPassBtn").on("click", () => {
     var signInData = {
         username: $("#resetUsername").val(),
@@ -64,7 +64,7 @@ $("#resetPassBtn").on("click", () => {
         }
     });
 });
-
+​
 $("#btnsubmit1").on("click", function() {
     var data = {
         fname: $("#firstname").val(),
@@ -77,7 +77,7 @@ $("#btnsubmit1").on("click", function() {
         state: $("#state").val(),
         address: $("#address").val()
     };
-
+​
     $.ajax({
         url: "/myaccount/acc",
         type: "PUT",
@@ -88,7 +88,7 @@ $("#btnsubmit1").on("click", function() {
         }
     });
 });
-
+​
 // city filter buttons
 // $('#delhBtn').on("click",function(){
 //     var data=$('#delhBtn').val();
@@ -103,7 +103,7 @@ $("#btnsubmit1").on("click", function() {
 //         }
 //     })
 // })
-
+​
 // $('#delhBtn').off().on('click',function(){
 //filter each city hotels
 $("#Btn001").on("click", function() {
@@ -120,7 +120,7 @@ $("#Btn001").on("click", function() {
     });
     window.location.href = "http://localhost:3000/hotels/cityF/" + data;
 });
-
+​
 $("#Btn002").on("click", function() {
     var data = $("button[name=nBtn002]").val();
     console.log("the city value is :" + data);
@@ -135,7 +135,7 @@ $("#Btn002").on("click", function() {
     });
     window.location.href = "http://localhost:3000/hotels/cityF/" + data;
 });
-
+​
 $("#Btn003").on("click", function() {
     var data = $("button[name=nBtn003]").val();
     console.log("the city value is :" + data);
@@ -150,7 +150,7 @@ $("#Btn003").on("click", function() {
     });
     window.location.href = "http://localhost:3000/hotels/cityF/" + data;
 });
-
+​
 //fetch hotel values for booking
 $(".button-nav1").on("click", "button", function() {
     var data = {
@@ -178,7 +178,7 @@ $(".button-nav1").on("click", "button", function() {
     );
     // window.location.href="http://localhost:3000/hotels/bookings/"+data1;
 });
-
+​
 //flight search script
 $(function() {
     var cityCodes = [
@@ -315,18 +315,18 @@ $(function() {
         "Warangal(WGC)",
         "Zero(ZER)"
     ];
-
+​
     $("#originPlace").autocomplete({
         source: cityCodes,
         minLength: 3
     });
-
+​
     $("#destinationPlace").autocomplete({
         source: cityCodes,
         minLength: 3
     });
 });
-
+​
 $("#submitBtn").on("click", function() {
     //$("#result").html("");
     var originInput = $("#originPlace").val();
@@ -359,7 +359,7 @@ $("#submitBtn").on("click", function() {
         success: data => {
             $('#FlightResult').empty();
             console.log(data)
-
+​
             function flightpriceFunc() {
                 return Math.floor(Math.random() * 1000 + 2000);
             }
@@ -369,22 +369,77 @@ $("#submitBtn").on("click", function() {
                 for (let i = 0; i < data.Carriers.length; i++) {
                     flightSearchResult += `
                     <div class="card pb-5">
-                    <div class="card-header">
+                    <div class="card-body">
+                    <div class="card-header airLine" value="${data.Carriers[i].Name}">
                     Name : ${data.Carriers[i].Name}
                     </div>
-                    <div class="card-body">
-                      <span class="card-title">Price : ${flightpriceFunc()} </span>
-                      <span class="card-title">Origin City : ${originInput} </span>
-                      <span class="card-title">Destination City : ${destinationInput} </span> 
-                      <span class="card-title"> Journey Date : ${outboundpartialdate} </span>
-                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="#" class="btn btn-primary">Book Now</a>
+                      <span class="card-title ticketPrice">Price : ${flightpriceFunc()}</span>
+                      <span class="card-title originCity" value="${originInput}">Origin City : ${originInput} </span>
+                      <span class="card-title destinationCity" value="${destinationInput}">Destination City : ${destinationInput} </span> 
+                      <span class="card-title outBondDate" value="${outboundpartialdate}"> Journey Date : ${outboundpartialdate} </span>
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <button href="#" class="btn btn-primary flightBookingBtn">Book Now</button>
                     </div>
                   </div>
                     `;
                 }
                 $("#FlightResult").append(flightSearchResult)
             }
-
         }
     });
 })
+​
+​
+$(document).on("click", ".flightBookingBtn", function() {
+    var flightBookingData = {
+        originCity: $(this).parent().children('.originCity').attr("value"),
+        destinationCity: $(this).parent().children('.destinationCity').attr("value"),
+        outBondDate: $(this).parent().children('.outBondDate').attr("value"),
+        ticketPrice: $(this).parent().children('.ticketPrice').text().substring(8),
+        airLine: $(this).parent().children('.airLine').attr("value"),
+        bookingStatus: "Conformed"
+    }
+    console.log(flightBookingData)
+    $.ajax({
+        url: "/flightBookings/addMyFlights",
+        type: "POST",
+        data: flightBookingData,
+        dataType: "json",
+        success: (data) => {
+            confirm(`Are You Sure to book this Flight.`);
+            alert("Flight Booked")
+        }
+    })
+​
+})
+​
+​
+$.ajax({
+    url: "flightBookings/getMyBookings",
+    type: "GET",
+    dataType: "json",
+    success: (data) => {
+        //console.log(data)
+        var outputMyBookings = "";
+        for (let i = 0; i < data[0].flightData.length; i++) {
+            console.log(data[0].flightData[i])
+            outputMyBookings += `
+            <div class="col-sm-4 mb-5">
+            <div class="card">
+            <div class="card-body">
+            <h5 class="card-title"> '${data[0].flightData[i].flightData.originCity}' To  '${data[0].flightData[i].flightData.destinationCity}' </h5>
+            <span class="card-text"> Booking Status : ${data[0].flightData[i].flightData.bookingStatus} </span> <br>
+            <span class="card-text"> Date : ${data[0].flightData[i].flightData.outBondDate} </span> <br>
+            <span class="card-text"> Ticket Price : ${data[0].flightData[i].flightData.ticketPrice} </span> <br>
+            <span class="card-text"> Air Line : ${data[0].flightData[i].flightData.airLine} </span> <br>
+            </div>
+            </div>
+            </div>
+            `
+        }
+        $('#myBookedFlights').append(outputMyBookings)
+    }
+})
+
+
+
+

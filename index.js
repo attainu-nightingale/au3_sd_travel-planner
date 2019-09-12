@@ -35,16 +35,12 @@ mongoClient.connect(
 app.locals.ObjectId;
 ObjectId = require("mongodb").ObjectID;
 
-
 app.use(
     session({
         secret: "Hakumanata!! Timon and Pumba. Mogambo khush hua!!!"
     })
 );
 
-var searchResult = [];
-var airlineName = [];
-var origin;
 app.get("/", function(req, res) {
     var loginButton;
     if (req.session.token) {
@@ -78,7 +74,7 @@ app.get("/logout", (req, res) => {
 
 //login authentication
 app.use("/authentication", auth);
-app.use('/', myTrips)
+app.use('/flightBookings', checkToken, myTrips)
     // protected Routes
 
 app.get("/profile", checkToken, (req, res) => {
@@ -87,24 +83,6 @@ app.get("/profile", checkToken, (req, res) => {
         data: req.userData._id
     });
 });
-
-// app.post('/search', function(req, res) {
-//     //console.log(JSON.stringify(req.body));
-//     //console.log(req.body.value);
-//     searchResult.push(req.body);
-//     var airlines = searchResult[0];
-//     var newAirlines = airlines.Carriers;
-//     // console.log(airlines);
-//     // console.log(newAirlines);
-//     var newAirlines = airlines.Carriers;
-//     newAirlines.forEach((element, index, array) => {
-//         airlineName.push(element.Name);
-//     });
-//     //console.log(req.body.originPlace);
-//     //console.log(airlineName);
-//     // console.log(JSON.stringify(searchResult));
-//     res.redirect('/');
-// });
 
 app.get("/faq", function(req, res) {
     res.render("faq.hbs");
@@ -154,8 +132,6 @@ app.get('/hotels', function(req, res) {
     })
 });
 
-
-
 //city-filter query-working
 app.get('/hotels/cityF/:data', function(req, res) {
     var cityId = req.params.data;
@@ -176,10 +152,6 @@ app.get('/hotels/cityF/:data', function(req, res) {
 
     })
 })
-
-
-
-
 
 //working
 app.put('/myaccount/acc', checkToken, (req, res) => {
@@ -209,9 +181,7 @@ app.put('/myaccount/acc', checkToken, (req, res) => {
 //             throw error;
 //             console.log(result);
 
-
 //         })})
-
 
 //booking  confirmation final page-working
 app.put('/hotels/book/', checkToken, (req, res) => {
@@ -232,20 +202,20 @@ app.put('/hotels/book/', checkToken, (req, res) => {
             upsert: true
         })
         console.log(result);
-
+​
         // res.render('bookingC.hbs',{ 
         //     title:'Confirm Booking',
         //     data:result,
         // script :'/script.js'})
-
+​
     })
 })
-
+​
 //working
 // app.get('/hotels/bookings/:data1',checkToken, (req, res) => {
 //     var hotelN1= req.params.data1;
 //     var objectId = require('mongodb').ObjectID;
-
+​
 // db.collection('trips').find({"bookingHotel":hotelN1}).toArray(function(error,result)
 // {
 //     if (error)
@@ -254,13 +224,11 @@ app.put('/hotels/book/', checkToken, (req, res) => {
 //             title:'Confirm Booking',
 //             data:result,
 //         script :'/script.js'})
-
-
-
+​
+​
+​
 //         })
 //     })
-
-
 
 //final confirm page of  hotel booking -works but only displays hotel name-working
 // app.get('/hotels/bookings/:data1',checkToken, (req, res) => {
@@ -273,8 +241,6 @@ app.put('/hotels/book/', checkToken, (req, res) => {
 //             data:hotelN1,
 //         script :'/script.js'})
 //         })
-
-
 
 //final confirm booking page for hotel with name and date-working
 app.get('/hotels/bookings/', checkToken, (req, res) => {
@@ -296,23 +262,9 @@ app.get('/hotels/bookings/', checkToken, (req, res) => {
 
         console.log(result);
     })
-
-
-
-
-
 })
-
-
-
-
-
-
-
-
-
-
 
 app.listen(3000, function() {
     console.log("Listening on port 3000");
 });
+
