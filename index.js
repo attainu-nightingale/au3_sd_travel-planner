@@ -3,11 +3,18 @@ var session = require("express-session");
 var hbs = require("hbs");
 var bodyParser = require("body-parser");
 var mongoClient = require("mongodb").MongoClient;
+var authToken = "b3b40691cfbe19a30e9557e935738d2e";
+var accountSid = "AC95d45bf3ae0ea163e2f699e84bc61f3e";
+const client = require("twilio")(accountSid, authToken);
 var app = express();
 const jwt = require("jsonwebtoken");
 var auth = require("./routes/auth.js");
 var myTrips = require("./routes/myTrips/myFlights")
+var twilioSms = require('./routes/twilio-sms/sms')
 var checkToken = require("./middleware/check-authToken");
+
+var sender_id_TEXT = "+12056199473";
+var sender_id_WP = "whatsapp:+14155238886";
 
 app.use(
     bodyParser.urlencoded({
@@ -75,6 +82,7 @@ app.get("/logout", (req, res) => {
 //login authentication
 app.use("/authentication", auth);
 app.use('/flightBookings', checkToken, myTrips)
+app.use('/sendSMS', twilioSms)
     // protected Routes
 
 app.get("/profile", checkToken, (req, res) => {
@@ -185,43 +193,43 @@ app.put('/myaccount/acc', checkToken, (req, res) => {
 
 //booking  confirmation final page-working
 app.put('/hotels/book/', checkToken, (req, res) => {
-    var proId = req.userData._id
-        // var hotelN= req.body;
-        // var objectId = require('mongodb').ObjectID;
-        // {bookingHotel: }
-        // db.collection('trips').update({"_id": new objectId(proId)},{$set: hotelN},{upsert:true},function(error,result){
-    db.collection('trips').insert(req.body, function(error, result) {
+        var proId = req.userData._id
+            // var hotelN= req.body;
+            // var objectId = require('mongodb').ObjectID;
+            // {bookingHotel: }
+            // db.collection('trips').update({"_id": new objectId(proId)},{$set: hotelN},{upsert:true},function(error,result){
+        db.collection('trips').insert(req.body, function(error, result) {
 
-        if (error)
-            throw error;
-        db.collection('trips').update(req.body, {
-            $set: {
-                "userid": proId
-            }
-        }, {
-            upsert: true
+            if (error)
+                throw error;
+            db.collection('trips').update(req.body, {
+                $set: {
+                    "userid": proId
+                }
+            }, {
+                upsert: true
+            })
+            console.log(result);
+            // res.render('bookingC.hbs',{ 
+            //     title:'Confirm Booking',
+            //     data:result,
+            // script :'/script.js'})
         })
-        console.log(result);
-        // res.render('bookingC.hbs',{ 
-        //     title:'Confirm Booking',
-        //     data:result,
-        // script :'/script.js'})
     })
-})
-//working
-// app.get('/hotels/bookings/:data1',checkToken, (req, res) => {
-//     var hotelN1= req.params.data1;
-//     var objectId = require('mongodb').ObjectID;
-// db.collection('trips').find({"bookingHotel":hotelN1}).toArray(function(error,result)
-// {
-//     if (error)
-//         throw error;
-//         res.render('bookingC.hbs',{ 
-//             title:'Confirm Booking',
-//             data:result,
-//         script :'/script.js'})
-//         })
-//     })
+    //working
+    // app.get('/hotels/bookings/:data1',checkToken, (req, res) => {
+    //     var hotelN1= req.params.data1;
+    //     var objectId = require('mongodb').ObjectID;
+    // db.collection('trips').find({"bookingHotel":hotelN1}).toArray(function(error,result)
+    // {
+    //     if (error)
+    //         throw error;
+    //         res.render('bookingC.hbs',{ 
+    //             title:'Confirm Booking',
+    //             data:result,
+    //         script :'/script.js'})
+    //         })
+    //     })
 
 //final confirm page of  hotel booking -works but only displays hotel name-working
 // app.get('/hotels/bookings/:data1',checkToken, (req, res) => {
@@ -257,7 +265,21 @@ app.get('/hotels/bookings/', checkToken, (req, res) => {
     })
 })
 
+app.post("/sendTextSMS", checkToken, (req, res) => {
+    client.messages
+        .create({
+            from: sender_id_TEXT,
+            to: `+91 ${req.userData.phone}`,
+            body: `Your flight from ${req.body.originCity} to ${req.body.destinationCity} is ${req.body.bookingStatus} with Airline : ${req.body.airLine} \n Enjoy a Safe Journey. \n Regards Travel Planner.`
+        })
+        .then(message => {
+            console.log(message.sid);
+            res.json(message);
+        })
+        .done();
+});
+
+
 app.listen(3000, function() {
     console.log("Listening on port 3000");
 });
-

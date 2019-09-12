@@ -344,6 +344,7 @@ $("#submitBtn").on("click", function() {
         success: data => {
             $('#FlightResult').empty();
             console.log(data)
+
             function flightpriceFunc() {
                 return Math.floor(Math.random() * 1000 + 2000);
             }
@@ -389,6 +390,16 @@ $(document).on("click", ".flightBookingBtn", function() {
         success: (data) => {
             confirm(`Are You Sure to book this Flight.`);
             alert("Flight Booked")
+            console.log(data)
+            $.ajax({
+                url: "/sendTextSMS",
+                type: "POST",
+                dataType: 'json',
+                data: flightBookingData,
+                success: (data) => {
+                    console.log(data)
+                }
+            })
         }
     })
 })
