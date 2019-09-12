@@ -81,7 +81,6 @@ $("#btnsubmit1").on("click", function() {
             console.log(data);
         }
     });
-    alert("Profile Updated Successfully !!!")
 });
 // city filter buttons
 // $('#delhBtn').on("click",function(){
@@ -117,8 +116,8 @@ $("#Btn002").on("click", function() {
     var data = $("button[name=nBtn002]").val();
     console.log("the city value is :" + data);
     $.ajax({
-        url:'/hotels/cityF/'+data,
-        type:'GET',
+        url: "/hotels/cityF/" + data,
+        type: "GET",
         // dataType:'json',
         data: data,
         success: function(data) {
@@ -148,19 +147,16 @@ $(".button-nav1").on("click", "button", function() {
         startDate: $("#fromDate").val(),
         endDate: $("#toDate").val()
     };
-    console.log("data fetched"+data)
     //     hotelName:$('.card-title1').html()
     var data1 = $(this).attr("value");
     $.ajax({
-        url: "/hotels/book/",
+        url: "hotels/book/",
         type: "PUT",
-        // datatype: "JSON",
         data: data,
         success: function(data) {
             console.log(data);
         }
     });
-    console.log(data);
     alert(
         "your stay at " +
         $(this).attr("value") +
@@ -348,6 +344,7 @@ $("#submitBtn").on("click", function() {
         success: data => {
             $('#FlightResult').empty();
             console.log(data)
+
             function flightpriceFunc() {
                 return Math.floor(Math.random() * 1000 + 2000);
             }
@@ -393,6 +390,16 @@ $(document).on("click", ".flightBookingBtn", function() {
         success: (data) => {
             confirm(`Are You Sure to book this Flight.`);
             alert("Flight Booked")
+            console.log(data)
+            $.ajax({
+                url: "/sendTextSMS",
+                type: "POST",
+                dataType: 'json',
+                data: flightBookingData,
+                success: (data) => {
+                    console.log(data)
+                }
+            })
         }
     })
 })
@@ -423,28 +430,25 @@ $.ajax({
     }
 })
 
-
-
-
 //holdidays script
-$('#holidayGoa,#holidayAndaman,#holidayKashmir').on("click",function(){
-	
-	var data= {
-	
-	    packageName: $(this).val(),
-	    holidayFrom: $("#fromDate1").val(),
-	    holidayTo:$("#toDate1").val()
-	}
-	$.ajax({
-	    url: "/holidays/submit/",
-	    type: "PUT",
-	    // datatype: "JSON",
-	    data: data,
-	    success: function(data) {
-	        console.log(data);
-	    }
-	});
-	alert("Your request for the enquiry of "+ $(this).val()+" holiday package from "+$("#fromDate1").val()+" to "+$("#toDate1").val()+" is submitted successfully.Our customer care representative will contact you and provide you with the best package available.")
-	
-	
-	})
+$('#holidayGoa,#holidayAndaman,#holidayKashmir').on("click", function() {
+
+    var data = {
+
+        packageName: $(this).val(),
+        holidayFrom: $("#fromDate1").val(),
+        holidayTo: $("#toDate1").val()
+    }
+    $.ajax({
+        url: "/holidays/submit/",
+        type: "PUT",
+        // datatype: "JSON",
+        data: data,
+        success: function(data) {
+            console.log(data);
+        }
+    });
+    alert("Your request for the enquiry of " + $(this).val() + " holiday package from " + $("#fromDate1").val() + " to " + $("#toDate1").val() + " is submitted successfully.Our customer care representative will contact you and provide you with the best package available.")
+
+
+})

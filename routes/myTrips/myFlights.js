@@ -1,6 +1,5 @@
 const express = require("express");
 const router = express.Router();
-const mongoClient = require("mongodb").mongoClient;
 router.get("/", (req, res) => {
     res.render("myFlights.hbs", {
         title: "My Flight Bookings",
@@ -47,7 +46,3 @@ router.get("/getMyBookings", (req, res) => {
         });
 });
 module.exports = router;
-
-
-
-
