@@ -403,7 +403,53 @@ $("#submitBtn").on("click", function() {
     });
 })
 
-
+$(document).on("click", ".flightBookingBtn", function() {
+    var flightBookingData = {
+        originCity: $(this).parent().children('.originCity').attr("value"),
+        destinationCity: $(this).parent().children('.destinationCity').attr("value"),
+        outBondDate: $(this).parent().children('.outBondDate').attr("value"),
+        ticketPrice: $(this).parent().children('.ticketPrice').text().substring(8),
+        airLine: $(this).parent().children('.airLine').attr("value"),
+        bookingStatus: "Conformed"
+    }
+    console.log(flightBookingData)
+    $.ajax({
+        url: "/flightBookings/addMyFlights",
+        type: "POST",
+        data: flightBookingData,
+        dataType: "json",
+        success: (data) => {
+            confirm(`Are You Sure to book this Flight.`);
+            alert("Flight Booked")
+        }
+    })
+})
+$.ajax({
+    url: "flightBookings/getMyBookings",
+    type: "GET",
+    dataType: "json",
+    success: (data) => {
+        //console.log(data)
+        var outputMyBookings = "";
+        for (let i = 0; i < data[0].flightData.length; i++) {
+            console.log(data[0].flightData[i])
+            outputMyBookings += `
+            <div class="col-sm-4 mb-5">
+            <div class="card">
+            <div class="card-body">
+            <h5 class="card-title"> '${data[0].flightData[i].flightData.originCity}' To  '${data[0].flightData[i].flightData.destinationCity}' </h5>
+            <span class="card-text"> Booking Status : ${data[0].flightData[i].flightData.bookingStatus} </span> <br>
+            <span class="card-text"> Date : ${data[0].flightData[i].flightData.outBondDate} </span> <br>
+            <span class="card-text"> Ticket Price : ${data[0].flightData[i].flightData.ticketPrice} </span> <br>
+            <span class="card-text"> Air Line : ${data[0].flightData[i].flightData.airLine} </span> <br>
+            </div>
+            </div>
+            </div>
+            `
+        }
+        $('#myBookedFlights').append(outputMyBookings)
+    }
+})
 
 
 
