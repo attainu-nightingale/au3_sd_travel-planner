@@ -16,7 +16,6 @@ $("#loginToYourAccount").on("click", () => {
         }
     });
 });
-
 // $('#logOutBtn').on('click', () => {
 //     $.ajax({
 //         url: "/logout",
@@ -26,9 +25,7 @@ $("#loginToYourAccount").on("click", () => {
 //             console.log("User Logged Out")
 //         }
 //     })
-
 // })
-
 $("#signUpButton").on("click", () => {
     var signInData = {
         username: $("#signupUsername").val(),
@@ -46,7 +43,6 @@ $("#signUpButton").on("click", () => {
         }
     });
 });
-
 $("#resetPassBtn").on("click", () => {
     var signInData = {
         username: $("#resetUsername").val(),
@@ -64,7 +60,6 @@ $("#resetPassBtn").on("click", () => {
         }
     });
 });
-
 $("#btnsubmit1").on("click", function() {
     var data = {
         fname: $("#firstname").val(),
@@ -77,7 +72,6 @@ $("#btnsubmit1").on("click", function() {
         state: $("#state").val(),
         address: $("#address").val()
     };
-
     $.ajax({
         url: "/myaccount/acc",
         type: "PUT",
@@ -89,7 +83,6 @@ $("#btnsubmit1").on("click", function() {
     });
     alert("Profile Updated Successfully !!!")
 });
-
 // city filter buttons
 // $('#delhBtn').on("click",function(){
 //     var data=$('#delhBtn').val();
@@ -104,7 +97,6 @@ $("#btnsubmit1").on("click", function() {
 //         }
 //     })
 // })
-
 // $('#delhBtn').off().on('click',function(){
 //filter each city hotels
 $("#Btn001").on("click", function() {
@@ -121,32 +113,20 @@ $("#Btn001").on("click", function() {
     });
     window.location.href = "http://localhost:3000/hotels/cityF/" + data;
 });
-
-$('#Btn002').on('click',function(){
-        
-    var data=$('button[name=nBtn002]').val();
-    console.log("the city value is :"+data);
+$("#Btn002").on("click", function() {
+    var data = $("button[name=nBtn002]").val();
+    console.log("the city value is :" + data);
     $.ajax({
         url:'/hotels/cityF/'+data,
         type:'GET',
         // dataType:'json',
-        data:data,
-        success:function(data){
-             console.log(data)
-               }
-
-    })
-    window.location.href="http://localhost:3000/hotels/cityF/"+data;
-})
-// $("#Btn002").on("click",function(){
-//     var data = $("button[name=nBtn002]").val();
-//     window.location.href = "http://localhost:3000/hotels/cityF/" + data;
-
-// })
-
-
-
-
+        data: data,
+        success: function(data) {
+            console.log(data);
+        }
+    });
+    window.location.href = "http://localhost:3000/hotels/cityF/" + data;
+});
 $("#Btn003").on("click", function() {
     var data = $("button[name=nBtn003]").val();
     console.log("the city value is :" + data);
@@ -161,7 +141,6 @@ $("#Btn003").on("click", function() {
     });
     window.location.href = "http://localhost:3000/hotels/cityF/" + data;
 });
-
 //fetch hotel values for booking
 $(".button-nav1").on("click", "button", function() {
     var data = {
@@ -192,7 +171,6 @@ $(".button-nav1").on("click", "button", function() {
     );
     // window.location.href="http://localhost:3000/hotels/bookings/"+data1;
 });
-
 //flight search script
 $(function() {
     var cityCodes = [
@@ -329,18 +307,15 @@ $(function() {
         "Warangal(WGC)",
         "Zero(ZER)"
     ];
-
     $("#originPlace").autocomplete({
         source: cityCodes,
         minLength: 3
     });
-
     $("#destinationPlace").autocomplete({
         source: cityCodes,
         minLength: 3
     });
 });
-
 $("#submitBtn").on("click", function() {
     //$("#result").html("");
     var originInput = $("#originPlace").val();
@@ -373,7 +348,6 @@ $("#submitBtn").on("click", function() {
         success: data => {
             $('#FlightResult').empty();
             console.log(data)
-
             function flightpriceFunc() {
                 return Math.floor(Math.random() * 1000 + 2000);
             }
@@ -383,26 +357,24 @@ $("#submitBtn").on("click", function() {
                 for (let i = 0; i < data.Carriers.length; i++) {
                     flightSearchResult += `
                     <div class="card pb-5">
-                    <div class="card-header">
+                    <div class="card-body">
+                    <div class="card-header airLine" value="${data.Carriers[i].Name}">
                     Name : ${data.Carriers[i].Name}
                     </div>
-                    <div class="card-body">
-                      <span class="card-title">Price : ${flightpriceFunc()} </span>
-                      <span class="card-title">Origin City : ${originInput} </span>
-                      <span class="card-title">Destination City : ${destinationInput} </span> 
-                      <span class="card-title"> Journey Date : ${outboundpartialdate} </span>
-                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="#" class="btn btn-primary">Book Now</a>
+                      <span class="card-title ticketPrice">Price : ${flightpriceFunc()}</span>
+                      <span class="card-title originCity" value="${originInput}">Origin City : ${originInput} </span>
+                      <span class="card-title destinationCity" value="${destinationInput}">Destination City : ${destinationInput} </span> 
+                      <span class="card-title outBondDate" value="${outboundpartialdate}"> Journey Date : ${outboundpartialdate} </span>
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <button href="#" class="btn btn-primary flightBookingBtn">Book Now</button>
                     </div>
                   </div>
                     `;
                 }
                 $("#FlightResult").append(flightSearchResult)
             }
-
         }
     });
 })
-
 $(document).on("click", ".flightBookingBtn", function() {
     var flightBookingData = {
         originCity: $(this).parent().children('.originCity').attr("value"),

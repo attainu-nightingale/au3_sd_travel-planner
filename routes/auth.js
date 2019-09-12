@@ -56,7 +56,8 @@ router.post('/login', function(req, res) {
                 if (result) {
                     const JWTToken = jwt.sign({
                             username: user.username,
-                            _id: user._id
+                            _id: user._id,
+                            phone: user.phone
                         },
                         'secret', {
                             expiresIn: '2h'
@@ -118,8 +119,5 @@ router.get("/logout", (req, res) => {
     req.session.destroy();
     res.redirect("/");
 });
-
-
-
 
 module.exports = router;

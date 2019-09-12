@@ -1,42 +1,39 @@
 <div>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="pb-navbar">
-        <div class="container">
-            <a class="navbar-brand ml-0" href="/">Travel Planner</a>
-            <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse"
-                data-target="#probootstrap-navbar" aria-controls="probootstrap-navbar" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="probootstrap-navbar">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item pr-4"><a class="nav-link" href="/hotels">Hotel</a></li>
-                    <li class="nav-item pr-4"><a class="nav-link" href="/holiday">Holiday</a></li>
-                    <li class="nav-item pr-4"><a class="nav-link" href="/faq">FAQ</a></li>
-                    <li class="nav-item pr-4">
-                        <div class="dropdown">
-  <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Profile
-  </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-      <a class="dropdown-item" href="/myaccount">My Account</a>
-      <a class="dropdown-item" href="/hotels/bookings/">Hotel Bookings</a>
-      <a class="dropdown-item" href="#">Flight Bookings</a>
-    <a class="dropdown-item" href="#">Something wrong! Contact Us</a>
-    
-      <a href="/logout" class="dropdown-item" >Log Out</a>
-    
-  </div>
-</div>
-                        
-                        {{!-- {{{loginBtn}}} --}}
-                    </li>
-                    {{!-- <li class="nav-item pr-4">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="pb-navbar">
+    <div class="container">
+      <a class="navbar-brand ml-0" href="/">Travel Planner</a>
+      <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#probootstrap-navbar"
+        aria-controls="probootstrap-navbar" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="probootstrap-navbar">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item pr-4"><a class="nav-link" href="/hotels">Hotel</a></li>
+          <li class="nav-item pr-4"><a class="nav-link" href="/holiday">Holiday</a></li>
+          <li class="nav-item pr-4"><a class="nav-link" href="/faq">FAQ</a></li>
+          <li class="nav-item pr-4">
+            <div class="dropdown">
+              <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Profile
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="/myaccount">My Account</a>
+                <a class="dropdown-item" href="/hotels/bookings/">Hotel Bookings</a>
+                <a class="dropdown-item" href="/flightBookings">Flight Bookings</a>
+                <a class="dropdown-item" href="#">Something wrong! Contact Us</a>
+                <a href="/logout" class="dropdown-item">Log Out</a>
+              </div>
+            </div>
+            {{!-- {{{loginBtn}}} --}}
+          </li>
+          {{!-- <li class="nav-item pr-4">
                         {{{signupBtn}}}
                     </li> --}}
-                </ul>
-            </div>
-        </div>
-    </nav>
+        </ul>
+      </div>
+    </div>
+  </nav>
 </div>
 {{!-- booking date --}}
 <div style="margin-left:10%;padding-left:.5%;margin-top:2%">
@@ -52,45 +49,38 @@
             </div>
 </form>
 </div>
-
-
-
-
 <div class="cityMenu">
-    <h5 style="padding-left:.5%">Select hotels by city :</h5>
-    
-<span><button type="button" id="Btn001" name="nBtn001" value="Delhi" class="btn btn1 btn-light">Delhi</button> &nbsp;&nbsp;
-<button type="button" id="Btn002" name="nBtn002" value="Mumbai" class="btn btn1 btn-light">Mumbai</button>
-<button type="button" id="Btn003" name="nBtn003" value="Bangalore" class="btn btn1 btn-light">Bangalore</button>
-</span>
-
+  <h5 style="padding-left:.5%">Select hotels by city :</h5>
+  <span><button type="button" id="Btn001" name="nBtn001" value="Delhi" class="btn btn1 btn-light">Delhi</button>
+    &nbsp;&nbsp;
+    <button type="button" id="Btn002" name="nBtn002" value="Mumbai" class="btn btn1 btn-light">Mumbai</button>
+    <button type="button" id="Btn003" name="nBtn003" value="Bangalore" class="btn btn1 btn-light">Bangalore</button>
+  </span>
 </div>
-
 <div class="cardcls">
-
-{{!-- <div class="container-fluid"> --}}
-    {{#each data}}
-<div class="card mb-3" style="max-width: 80%;">
-  <div class="row no-gutters">
-    <div class="col-md-2">
-      <img src={{this.img}} class="card-img" alt="...">
-    </div>
-    <div class="col-md-10">
-      <div class="card-body">
-        <h5 class="card-title" >{{this.hName}}</h5>
-        <p class="card-text">{{this.desc}} </p>
-        <p class="card-text"><i class="material-icons" style="font-size:15px">directions</i> {{this.address}} </p>
-        <p class="card-text"><i class="material-icons" style="font-size:20px">place</i><small class="text-muted">{{this.city}}</small></p>
-       <div class="button-nav1">
-        <button type="button" value="{{this.hName}}" class="btn btn-primary card-text">Book Hotel</button>
+  {{!-- <div class="container-fluid"> --}}
+  {{#each data}}
+  <div class="card mb-3" style="max-width: 80%;">
+    <div class="row no-gutters">
+      <div class="col-md-2">
+        <img src={{this.img}} class="card-img" alt="...">
+      </div>
+      <div class="col-md-10">
+        <div class="card-body">
+          <h5 class="card-title">{{this.hName}}</h5>
+          <p class="card-text">{{this.desc}} </p>
+          <p class="card-text"><i class="material-icons" style="font-size:15px">directions</i> {{this.address}} </p>
+          <p class="card-text"><i class="material-icons" style="font-size:20px">place</i><small
+              class="text-muted">{{this.city}}</small></p>
+          <div class="button-nav1">
+            <button type="button" value="{{this.hName}}" class="btn btn-primary card-text">Book Hotel</button>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
-{{/each}}
-
-{{!-- <div class="card mb-3" style="max-width: 80%;">
+  {{/each}}
+  {{!-- <div class="card mb-3" style="max-width: 80%;">
   <div class="row no-gutters">
     <div class="col-md-2">
       <img src="https://imgsv.imaging.nikon.com/lineup/dslr/d600/img/sample01/img_05_l.jpg" class="card-img" alt="...">
@@ -104,9 +94,5 @@
     </div>
   </div>
 </div> --}}
-
-
-{{!-- </div> --}}
+  {{!-- </div> --}}
 </div>
-
-

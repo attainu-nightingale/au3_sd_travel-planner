@@ -1,102 +1,89 @@
 <div>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="pb-navbar">
-        <div class="container">
-            <a class="navbar-brand ml-0" href="/">Travel Planner</a>
-            <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse"
-                data-target="#probootstrap-navbar" aria-controls="probootstrap-navbar" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="probootstrap-navbar">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item pr-4"><a class="nav-link" href="/hotels">Hotel</a></li>
-                    <li class="nav-item pr-4"><a class="nav-link" href="/holiday">Holiday</a></li>
-                    <li class="nav-item pr-4"><a class="nav-link" href="/faq">FAQ</a></li>
-                    <li class="nav-item pr-4">
-                        <div class="dropdown">
-                            <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Profile
-                            </button>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" href="/myaccount">My Account</a>
-                                <a class="dropdown-item" href="/hotels/bookings/">Hotel Bookings</a>
-                                <a class="dropdown-item" href="#">Flight Bookings</a>
-                                <a class="dropdown-item" href="#">Something wrong! Contact Us</a>
-
-                                <a href="/logout" class="dropdown-item">Log Out</a>
-
-                            </div>
-                        </div>
-
-                        {{!-- {{{loginBtn}}} --}}
-                    </li>
-                    {{!-- <li class="nav-item pr-4">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="pb-navbar">
+    <div class="container">
+      <a class="navbar-brand ml-0" href="/">Travel Planner</a>
+      <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#probootstrap-navbar"
+        aria-controls="probootstrap-navbar" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="probootstrap-navbar">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item pr-4"><a class="nav-link" href="/hotels">Hotel</a></li>
+          <li class="nav-item pr-4"><a class="nav-link" href="/holiday">Holiday</a></li>
+          <li class="nav-item pr-4"><a class="nav-link" href="/faq">FAQ</a></li>
+          <li class="nav-item pr-4">
+            <div class="dropdown">
+              <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Profile
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="/myaccount">My Account</a>
+                <a class="dropdown-item" href="/hotels/bookings/">Hotel Bookings</a>
+                <a class="dropdown-item" href="/flightBookings">Flight Bookings</a>
+                <a class="dropdown-item" href="#">Something wrong! Contact Us</a>
+                <a href="/logout" class="dropdown-item">Log Out</a>
+              </div>
+            </div>
+            {{!-- {{{loginBtn}}} --}}
+          </li>
+          {{!-- <li class="nav-item pr-4">
                         {{{signupBtn}}}
                     </li> --}}
-                </ul>
-            </div>
-        </div>
-    </nav>
-</div>
-
-<div class="jumbotron jumbotron-fluid">
-    <div class="container">
-        <h1 class="display-4">My Account</h1>
-        <p class="lead">View/make changes to your profile</p>
-
+        </ul>
+      </div>
     </div>
+  </nav>
 </div>
-
-
-
-
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4">My Account</h1>
+    <p class="lead">View/make changes to your profile</p>
+  </div>
+</div>
 <div class="container-fluid" style="margin-bottom: 150px ; max-width:50%">
-    <form action="" id="myForm">
-
-        <div class="form-group">
-            <label for="firstname">First Name</label>
-            <input type="text" name="firstname" id="firstname" value="{{data.fname}}" class="form-control" />
-        </div>
-        <div class="form-group">
-            <label for="lastname">Last Name</label>
-            <input type="text" name="lastname" id="lastname" value="{{data.lname}}" class="form-control" />
-        </div>
-        <div class="form-inline">
-            <label for="gender">Gender: &nbsp;</label>
-            <input type="radio" name="gender" id="male" value="male" class="form-control"
-                {{checked data.gender 'male'}} />&nbsp;Male&nbsp;&nbsp;
-            <input type="radio" name="gender" id="female" value="female" {{checked data.gender 'female'}}
-                class="form-control" />&nbsp;Female
-        </div>
-        <div class="form-group">
-            <label for="age">Age</label>
-            <input type="text" name="age" id="age" value="{{data.age}}" class="form-control" />
-        </div>
-
-        <div class="form-group">
-            <label for="email">Email</label>
-            <input type="text" name="email" id="email" value="{{data.email}}" class="form-control" />
-        </div>
-        <div class="form-group">
-            <label for="phone">Phone</label>
-            <input type="text" name="phone" id="phone" value="{{data.phone}}" class="form-control" />
-        </div>
-        <div class="form-group">
-            <label for="city">City</label>
-            <input type="text" name="city" id="city" value="{{data.city}}" class="form-control" />
-        </div>
-        <div class="form-group">
-            <label for="state">State</label>
-            <input type="text" name="State" id="state" value="{{data.state}}" class="form-control" />
-        </div>
-        <div class="form-group">
-            <label for="address">Address</label>
-            {{!-- <textarea class="form-control" rows="3" name="address"  value="{{data.address}}" id="address"></textarea> --}}
-            <input type="text" name="address" id="address" value="{{data.address}}" class="form-control" />
-        </div>
-
-        {{!-- <div class="form-group">
+  <form action="" id="myForm">
+    <div class="form-group">
+      <label for="firstname">First Name</label>
+      <input type="text" name="firstname" id="firstname" value="{{data.fname}}" class="form-control" />
+    </div>
+    <div class="form-group">
+      <label for="lastname">Last Name</label>
+      <input type="text" name="lastname" id="lastname" value="{{data.lname}}" class="form-control" />
+    </div>
+    <div class="form-inline">
+      <label for="gender">Gender: &nbsp;</label>
+      <input type="radio" name="gender" id="male" value="male" class="form-control"
+        {{checked data.gender 'male'}} />&nbsp;Male&nbsp;&nbsp;
+      <input type="radio" name="gender" id="female" value="female" {{checked data.gender 'female'}}
+        class="form-control" />&nbsp;Female
+    </div>
+    <div class="form-group">
+      <label for="age">Age</label>
+      <input type="text" name="age" id="age" value="{{data.age}}" class="form-control" />
+    </div>
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="text" name="email" id="email" value="{{data.email}}" class="form-control" />
+    </div>
+    <div class="form-group">
+      <label for="phone">Phone</label>
+      <input type="text" name="phone" id="phone" value="{{data.phone}}" class="form-control" />
+    </div>
+    <div class="form-group">
+      <label for="city">City</label>
+      <input type="text" name="city" id="city" value="{{data.city}}" class="form-control" />
+    </div>
+    <div class="form-group">
+      <label for="state">State</label>
+      <input type="text" name="State" id="state" value="{{data.state}}" class="form-control" />
+    </div>
+    <div class="form-group">
+      <label for="address">Address</label>
+      {{!-- <textarea class="form-control" rows="3" name="address"  value="{{data.address}}" id="address"></textarea> --}}
+      <input type="text" name="address" id="address" value="{{data.address}}" class="form-control" />
+    </div>
+    {{!-- <div class="form-group">
                 <label for="username">Username</label>
                 <input type="text" name="username" id="username" class="form-control" />
             </div>
@@ -104,9 +91,8 @@
                 <label for="password">Password</label>
                 <input type="password" name="password" id="password" class="form-control" />
             </div> --}}
-        <button type="submit" id="btnsubmit1" class="btn btn-primary">Save/Update Changes</button>
-    </form>
-
+    <button type="submit" id="btnsubmit1" class="btn btn-primary">Save/Update Changes</button>
+  </form>
 </div>
 {{!-- <a href="/profile" class="btn btn-primary" style="position: fixed;right: 50px;top:40px">Logout</a>
     <a href="/logout" class="btn btn-primary" style="position: fixed;right: 50px;top:40px">Logout</a> --}}
