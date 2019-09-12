@@ -175,7 +175,7 @@ db.collection("addfaq").find({_id : req.params.id}).toArray(function(err,result)
     }); 
 });
 
-//Update part
+//Update part :
 app.put('/listfaq/:id', function(req,res){
     db.collection('addfaq').findOne({_id: req.params.id}).toArray(function(err,result){
         if(error) throw err
@@ -196,11 +196,43 @@ app.delete("/listfaq/:_id", function(req,res){
             res.redirect('/listfaq');
     });
 });
-
-
 //faq section ends here
+//faq login part starts
+var adminLog = [
+    {
+        username: "admin",
+        email: "admin@gmail.com",
+        password: "admin"
+    },
+    
+];
+app.post("/login",function(req,res){
+    for( var i=0; i<adminLog.length; i++){
+        if(req.body.email == adminLog[i].email && req.body.password == adminLog[i].password ){
+            req.session.loggedIn=true;
+            req.session.username = adminLog.username;
+        }
+    }
+    res.redirect("/listfaq");
+});
+app.get("/admin", function(req,res){
+        if(req.session.loggedIn == true){
+            res.render('login');
+        }
+        else{
+            res.redirect("/listfaq");
+        }
+});
 
+app.get("/adminlog",function(req,res){
+     res.sendFile('/public/login.html', { root: __dirname });
+})
 
+app.get("/adminlogout",function(req,res){
+    req.session.destroy();
+    res.redirect("/faq");
+})
+//faq login part ends here
 
 //Myaccount--works
 // app.get("/myaccount", checkToken, (req, res) => {
