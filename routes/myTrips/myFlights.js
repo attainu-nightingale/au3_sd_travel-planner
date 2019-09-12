@@ -47,7 +47,7 @@ router.get("/getMyBookings", (req, res) => {
         ])
         .toArray((err, result) => {
             if (err) throw err;
-            res.json(result)
+            res.json(result);
         });
 });
 ​
