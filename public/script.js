@@ -449,6 +449,4 @@ $('#holidayGoa,#holidayAndaman,#holidayKashmir').on("click", function() {
         }
     });
     alert("Your request for the enquiry of " + $(this).val() + " holiday package from " + $("#fromDate1").val() + " to " + $("#toDate1").val() + " is submitted successfully.Our customer care representative will contact you and provide you with the best package available.")
-
-
 })

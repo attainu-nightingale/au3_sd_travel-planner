@@ -1,0 +1,58 @@
+<body style="background: linear-gradient(45deg,#00c6ff,#0072ff)">
+  <div class="container">
+    <h1 class="center" style="padding: 5px; margin:10px;"><kbd>FAQs</kbd></h1>
+    <a href="/adminlogout" class="btn btn-danger btn-md" style="position : relative; top:-60px; left:1100px;">Log
+      Out</a>
+    <a href="/faq/create" class="btn btn-dark btn-md" style="position : relative; top:-60px; left:900px;">Add FAQ</a>
+    {{#each data}}
+    <div class="card card-body mb-3">
+      <h5>Q: {{this.question}}</h5>
+      <p style="font-weight:300; font-style:italic; "><b> A: {{this.answer}} </b> </p> <br>
+      <button class="btn btn-info mb-3 editfaqbtnData" data-toggle="modal" data-target="#editFaqModal"
+        value="{{this._id}}">Edit FAQ</button>
+
+      <form action="/listfaq/{{_id}}?_method=DELETE" method="post">
+        <input type="hidden" name="_method" value="DELETE">
+        <input type="submit" value="Delete" class="btn  btn-block btn-warning">
+      </form>
+
+    </div>
+    {{/each}}
+  </div>
+
+  {{!-- edit faq modal start --}}
+  <div class="modal fade" id="editFaqModal" tabindex="-1" role="dialog" aria-labelledby="editFaqModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editFaqModalLabel">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group">
+              <label for="question"> <i> Question :</i> </label>
+              <input type="text" class="form-control" required autocomplete="off" id="faqQues" required>
+            </div>
+            <div class="form-group">
+              <label for="answer"> <i> Answer : </i> </label>
+              <textarea id="answer" cols="30" rows="6" class="form-control" required autocomplete="off"
+                style=" resize: none;" required></textarea>
+            </div>
+            <div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" id="updateFaqBtn" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  {{!-- edit faq modal end --}}
+
+</body>

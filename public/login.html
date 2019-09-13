@@ -1,0 +1,54 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Log-in Page</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <style>
+        body {
+            background: linear-gradient(90deg, #614385, #516395);
+        }
+        
+        div.container {
+            background-color: azure;
+            margin-top: 60px;
+            padding: 40px;
+            border-radius: 12px;
+            width: 600px;
+        }
+        
+        .btn {
+            color: black;
+            margin-left: 210px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container col s12 m2 z-depth-5">
+        <h3 class="text-center shad"><kbd>Login</kbd></h3> <br>
+        <form action="/login" method="POST">
+            <div class="form-group ">
+                <label for=""><b>Your Email:</b></label>
+                <input type="email" name="email" class="form-control" placeholder="Enter your Email" autocomplete="off">
+                <br>
+            </div>
+            <div class="form-group">
+                <label for=""><b> Password : </b></label>
+                <input type="password" name="password" class="form-control" placeholder="Enter Password here"> <br>
+            </div>
+            <button type="submit" class="btn btn-danger center btn-lg icon btn waves-effect waves-light " value="login">
+                Login
+            </button>
+
+        </form>
+    </div>
+
+</body>
+
+</html>

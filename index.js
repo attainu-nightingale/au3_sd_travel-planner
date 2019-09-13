@@ -12,6 +12,7 @@ var auth = require("./routes/auth.js");
 var myTrips = require("./routes/myTrips/myFlights")
 var twilioSms = require('./routes/twilio-sms/sms')
 var checkToken = require("./middleware/check-authToken");
+var faq = require('./routes/faqRoute')
 
 var sender_id_TEXT = "+12056199473";
 var sender_id_WP = "whatsapp:+14155238886";
@@ -24,8 +25,9 @@ app.use(
 app.use(bodyParser.json());
 app.use(express.static("public"));
 app.set("view engine", "hbs");
+app.use('/', faq)
 
-var url = "mongodb://localhost:27017";
+var url = "mongodb+srv://dinu:dinu@travelp-q0fd8.mongodb.net/?retryWrites=true&w=majority";
 
 app.locals.db;
 
@@ -35,7 +37,7 @@ mongoClient.connect(
     },
     function(err, client) {
         if (err) throw err;
-        db = client.db("school"); //will change db name, when it is created
+        db = client.db("TravelPlanner"); //will change db name, when it is created
     }
 );
 
@@ -92,9 +94,9 @@ app.get("/profile", checkToken, (req, res) => {
     });
 });
 
-app.get("/faq", function(req, res) {
-    res.render("faq.hbs");
-});
+// app.get("/faq", function(req, res) {
+//     res.render("faq.hbs");
+// });
 
 //Myaccount--works
 // app.get("/myaccount", checkToken, (req, res) => {
@@ -299,10 +301,6 @@ app.put('/holidays/submit/', checkToken, (req, res) => {
         })
         console.log(result);
 
-        // res.render('bookingC.hbs',{ 
-        //     title:'Confirm Booking',
-        //     data:result,
-        // script :'/script.js'})
 
     })
 })
@@ -321,6 +319,57 @@ app.post("/sendTextSMS", checkToken, (req, res) => {
         .done();
 })
 
+
+var adminLog = [{
+        username: "admin",
+        email: "admin@gmail.com",
+        password: "admin"
+    },
+
+];
+app.post("/login", function(req, res) {
+    var flag = false;
+    for (var i = 0; i < adminLog.length; i++) {
+        if (
+            adminLog[i].email == req.body.email &&
+            adminLog[i].password == req.body.password
+        ) {
+            flag = true;
+            break;
+        }
+    }
+    if (flag) {
+        req.session.username = adminLog.username;
+        req.session.loggedIn = true;
+        res.redirect("/listfaq");
+    } else {
+        res.json("Incorrect Credentials")
+    }
+
+    // if (req.body.email === adminLog.email && req.body.password === adminLog.password) {
+    //     req.session.loggedIn = true;
+    //     req.session.username = adminLog.username;
+    //     res.redirect("/listfaq");
+    // } else {
+    //     res.json("Incorrect Credentials")
+    // }
+});
+app.get("/admin", function(req, res) {
+    if (req.session.loggedIn == true) {
+        res.render('login');
+    } else {
+        res.redirect("/listfaq");
+    }
+});
+
+app.get("/adminlog", function(req, res) {
+    res.sendFile(__dirname + '/public/login.html');
+})
+
+app.get("/adminlogout", function(req, res) {
+    req.session.destroy();
+    res.redirect("/faq");
+})
 app.listen(3000, function() {
     console.log("Listening on port 3000");
 });
