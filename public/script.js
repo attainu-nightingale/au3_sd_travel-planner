@@ -408,7 +408,7 @@ $.ajax({
     type: "GET",
     dataType: "json",
     success: (data) => {
-        //console.log(data)
+        console.log(data)
         var outputMyBookings = "";
         for (let i = 0; i < data[0].flightData.length; i++) {
             console.log(data[0].flightData[i])

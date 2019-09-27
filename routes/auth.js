@@ -49,9 +49,7 @@ router.post('/login', function(req, res) {
         } else if (user) {
             bcrypt.compare(req.body.password, user.password, function(err, result) {
                 if (err) {
-                    return res.status(401).json({
-                        failed: 'Unauthorized Access'
-                    });
+                    return res.json('Unauthorized Access');
                 }
                 if (result) {
                     const JWTToken = jwt.sign({
@@ -69,9 +67,7 @@ router.post('/login', function(req, res) {
                         success: 'Login Success',
                     });
                 }
-                return res.status(401).json({
-                    failed: 'Incorrect Password'
-                });
+                return res.json('Incorrect Password');
             });
         }
     })

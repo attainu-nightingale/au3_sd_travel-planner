@@ -1,4 +1,5 @@
-<body style="background: linear-gradient(45deg,#00c6ff,#0072ff)">
+<body style="background: biege">
+
   <div class="container">
     <h1 class="center" style="padding: 5px; margin:10px;"><kbd>FAQs</kbd></h1>
     <a href="/adminlogout" class="btn btn-danger btn-md" style="position : relative; top:-60px; left:1100px;">Log
@@ -10,10 +11,9 @@
       <p style="font-weight:300; font-style:italic; "><b> A: {{this.answer}} </b> </p> <br>
       <button class="btn btn-info mb-3 editfaqbtnData" data-toggle="modal" data-target="#editFaqModal"
         value="{{this._id}}">Edit FAQ</button>
-
-      <form action="/listfaq/{{_id}}?_method=DELETE" method="post">
-        <input type="hidden" name="_method" value="DELETE">
-        <input type="submit" value="Delete" class="btn  btn-block btn-warning">
+      <form>
+        {{!-- <input type="hidden" value="{{_id}}"> --}}
+        <button type="submit" value="{{this._id}}" class="btn  btn-block btn-warning deleteFaq">Delete</button>
       </form>
 
     </div>

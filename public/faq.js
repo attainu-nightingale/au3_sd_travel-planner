@@ -29,3 +29,17 @@ $('#updateFaqBtn').on('click', () => {
         }
     })
 })
+
+
+$(document).on("click", ".deleteFaq", function() {
+    var deleteId = $(this).attr("value")
+    console.log(deleteId)
+    $.ajax({
+        url: "/listfaq?" + deleteId,
+        type: "DELETE",
+        dataType: "json",
+        success: (data) => {
+            alert("Faq Deleted")
+        }
+    })
+})

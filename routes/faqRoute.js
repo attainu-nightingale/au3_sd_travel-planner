@@ -62,13 +62,14 @@ router.put('/updateFaq/:id', (req, res) => {
 
 
 //delete process
-router.delete("/listfaq/:_id", function(req, res) {
+router.delete("/listfaq", function(req, res) {
     db.collection('addfaq').deleteOne({
-        _id: require('mongodb').ObjectID(req.params._id)
+        _id: ObjectId(req.query.id)
     }, function(error, result) {
         if (error)
             throw error
-        res.redirect('/listfaq');
+        res.json(result)
+            //res.redirect('/listfaq');
     });
 });
 //faq section ends here
